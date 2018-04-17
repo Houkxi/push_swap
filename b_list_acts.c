@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:14:04 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/17 12:49:54 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/17 18:00:09 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_lsts		*rereverse_b(t_lsts *l)
 	return (l);
 }
 
-t_lsts		*push_b(t_lsts *l)
+t_lsts		*push_a(t_lsts *l)
 {
 	t_lst	*tmpa;
 	t_lst	*tmpb;
@@ -48,23 +48,18 @@ t_lsts		*push_b(t_lsts *l)
 	l->b->prev->next = l->b;
 	if (!l->b)
 	{
-		//ft_printf("*********NEW**********\n");
 		l->a = tmpb;
 		l->a->prev = l->a;
 		l->a->next = l->a;
 	}
 	else
 	{
-		//ft_printf("*********OTHER**********\n");
 		tmpa = l->a;
 		l->a = tmpb;
 		l->a->next = tmpa;
 		l->b->prev = tmpa->prev;
 		l->a->prev->next = tmpb;
 		l->a->next->prev = tmpb;
-
 	}
-	//ft_lst_print_cir(&l->a, -1, -5);
-	//ft_lst_print_cir(&l->b, 1, -5);
 	return (l);
 }

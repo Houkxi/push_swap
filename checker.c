@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 12:20:54 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/17 15:44:18 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/17 18:01:37 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,29 @@ int			ft_is_sorted(t_lst *lst, int size)
 	while (x < size && tmp->next != lst)
 	{
 		if (tmp->data < tmp->next->data)
+			x++;
+		else
+		{
+			x = 0;
+			break ;
+		}
+		tmp = tmp->next;
+	}
+	return (x);
+}
+
+int			ft_is_sorted_other_side(t_lst *lst, int size)
+{
+	int		x;
+	t_lst	*tmp;
+
+	x = 0;
+	if (!lst)
+		return (-1);
+	tmp = lst;
+	while (x < size && tmp->next != lst)
+	{
+		if (tmp->data > tmp->next->data)
 			x++;
 		else
 		{
@@ -54,8 +77,8 @@ int			lst_ct_size(t_lst *lst)
 
 int			string_check(int av, char **ac, int ch)
 {
-	int x;
-	int y;
+	int		x;
+	int		y;
 
 	x = 0;
 	y = 0;
@@ -87,7 +110,8 @@ t_lst		*checker(int mid, int size, t_lsts *l)
 		l = push_to_mid(l, mid);
 		if (!(ft_is_sorted(l->b, lst_ct_size(l->b))))
 			l = quick_sort_b(l);
-		while (1);
+		l = quick_sort_a(l);
+		//while (1);
 		size = lst_ct_size(l->a);
 		if (size > 3)
 		{
@@ -95,8 +119,8 @@ t_lst		*checker(int mid, int size, t_lsts *l)
 			mid = (int)find_mid(l->a, size);
 		}
 	}
-	//ft_lst_print_cir(&l->a, -1, -5);
-	//ft_lst_print_cir(&l->b, 1, -5);
+	ft_lst_print_cir(&l->a, -1, -5);
+	ft_lst_print_cir(&l->b, 1, -5);
 	return (l->a);
 }
 
@@ -105,7 +129,7 @@ int			main(int av, char **ac)
 	t_lst	*lst;
 	t_lsts	*l;
 	t_lst	*tmp;
-	long		i;
+	long	i;
 	int		ct;
 
 	ct = 1;

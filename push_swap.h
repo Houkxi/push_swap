@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:36:25 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/17 15:12:34 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/17 18:00:52 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define BA l->b->data
 # define BB l->b->next->data
 # define BZ l->b->prev->data
+
 typedef struct		s_lst
 {
 	int				data;
@@ -58,9 +59,13 @@ t_lsts				*push_b(t_lsts *l);
 int					lst_ct_size(t_lst *lst);
 t_lsts				*push_to_mid(t_lsts *l, int mid);
 t_lsts				*quick_sort_b(t_lsts *l);
+t_lsts				*quick_sort_a(t_lsts *l);
+int					ft_is_sorted(t_lst *lst, int size);
+int					ft_is_sorted_other_side(t_lst *lst, int size);
 static	t_lsts		*(*actions[8])(t_lsts *l) =\
 {
-	swap_a, reverse_a, rereverse_a, push_a, swap_b, reverse_b, rereverse_b, push_b
+	swap_a, reverse_a, rereverse_a, push_b, swap_b, reverse_b, rereverse_b,\
+	push_a
 };
 
 #endif

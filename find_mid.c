@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 16:19:19 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/17 14:29:19 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/17 18:00:24 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			mid_4_even(t_lst *lst, int mid, int size)
 		return (-1);
 }
 
-int		find_mid(t_lst *lst, int ct)
+int			find_mid(t_lst *lst, int ct)
 {
 	int		mid;
 	int		size;
