@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:40:21 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/16 13:18:01 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/17 14:31:22 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ int			data_check(t_lst *lst, int curr)
 		while (tmp->next != lst)
 		{
 			if (curr == tmp->data)
+			{
+				ft_printf("Same nbr = %d\n", curr);
 				return (-1);
+			}
 			tmp = tmp->next;
 		}
 		return (1);

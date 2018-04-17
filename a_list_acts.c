@@ -1,66 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions.c                                          :+:      :+:    :+:   */
+/*   a_list_acts.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 09:27:08 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/16 13:17:31 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/17 14:51:09 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_lsts		*swap(t_lst *a, t_lst *b, t_lsts *l)
+t_lsts		*swap_a(t_lsts *l)
 {
 	t_lst	*tmp;
 
 	tmp = (t_lst*)malloc(sizeof(t_lst));
-	tmp->data = a->data;
-	a->data = a->next->data;
-	a->next->data = tmp->data;
-	l->a = a;
-	l->b = b;
+	tmp->data = l->a->data;
+	l->a->data = l->a->next->data;
+	l->a->next->data = tmp->data;
 	free(tmp);
 	tmp = NULL;
 	return (l);
 }
 
-t_lsts		*reverse(t_lst *a, t_lst *b, t_lsts *l)
+t_lsts		*reverse_a(t_lsts *l)
 {
-	l->a = a->next;
-	l->b = b;
+	l->a = l->a->next;
 	return (l);
 }
 
-t_lsts		*rereverse(t_lst *a, t_lst *b, t_lsts *l)
+t_lsts		*rereverse_a(t_lsts *l)
 {
-	l->a = a->prev;
-	l->b = b;
+	l->a = l->a->prev;
 	return (l);
 }
 
-t_lsts		*push(t_lst *a, t_lst *b, t_lsts *l)
+t_lsts		*push_a(t_lsts *l)
 {
 	t_lst	*tmpa;
 	t_lst	*tmpb;
 
-	if (!(tmpa = (t_lst*)malloc(sizeof(t_lst))) ||
-	!(tmpb = (t_lst*)malloc(sizeof(t_lst))))
-		return (NULL);
-	tmpa->next = a->next;
-	tmpa->prev = a->prev;
-	lst_circular(&b, a);
-	tmpb->next = b->next;
-	tmpb->prev = b->prev;
-	tmpa->next->prev = tmpa->prev;
-	tmpa->prev->next = tmpa->next;
-	l->a = tmpa->next;
-	l->b = a;
-	free(tmpa);
-	free(tmpb);
-	tmpa = NULL;
-	tmpb = NULL;
+	tmpa = l->a;
+	l->a = l->a->next;
+	l->a->prev = tmpa->prev;
+	l->a->prev->next = l->a;
+	if (!l->b)
+	{
+		l->b = tmpa;
+		l->b->prev = l->b;
+		l->b->next = l->b;
+	}
+	else
+	{
+		tmpb = l->b;
+		l->b = tmpa;
+		l->b->next = tmpb;
+		l->b->prev = tmpb->prev;
+		l->b->prev->next = tmpa;
+		l->b->next->prev = tmpa;
+
+	}
 	return (l);
 }

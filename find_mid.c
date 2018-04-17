@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 16:19:19 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/16 09:33:12 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/17 14:29:19 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			mid_4_odd(t_lst *lst, int mid, int size)
 		tmp = tmp->next;
 	}
 	if (ct1 == ct2)
-		return (0);
+		return (mid);
 	else
 		return (-1);
 }
@@ -53,27 +53,29 @@ int			mid_4_even(t_lst *lst, int mid, int size)
 		tmp = tmp->next;
 	}
 	if (ct1 == ct2)
-		return (0);
+		return (mid);
 	else
 		return (-1);
 }
 
-t_lst		*find_mid(t_lst *lst, int ct)
+int		find_mid(t_lst *lst, int ct)
 {
 	int		mid;
+	int		size;
 	t_lst	*tmp;
 
 	mid = -2;
 	tmp = lst;
-	while (tmp->next != lst)
+	size = ct;
+	while (size--)
 	{
 		if (ct % 2 == 0)
 			mid = mid_4_even(lst, tmp->data, ct);
 		if (ct % 2 == 1)
 			mid = mid_4_odd(lst, tmp->data, ct);
-		if (mid == 0)
-			return (tmp);
+		if (mid != -1)
+			return (tmp->data);
 		tmp = tmp->next;
 	}
-	return (NULL);
+	return (0);
 }

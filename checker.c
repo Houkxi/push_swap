@@ -1,16 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 12:20:54 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/16 13:17:34 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/17 15:44:18 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int			ft_is_sorted(t_lst *lst, int size)
+{
+	int		x;
+	t_lst	*tmp;
+
+	x = 0;
+	if (!lst)
+		return (-1);
+	tmp = lst;
+	while (x < size && tmp->next != lst)
+	{
+		if (tmp->data < tmp->next->data)
+			x++;
+		else
+		{
+			x = 0;
+			break ;
+		}
+		tmp = tmp->next;
+	}
+	return (x);
+}
+
+int			lst_ct_size(t_lst *lst)
+{
+	int		i;
+	t_lst	*tmp;
+
+	i = 1;
+	if (!lst)
+		return (0);
+	tmp = lst;
+	while (tmp->next != lst)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
 
 int			string_check(int av, char **ac, int ch)
 {
@@ -38,62 +78,53 @@ int			string_check(int av, char **ac, int ch)
 	return (0);
 }
 
-t_lst		*push_swaping(t_lst *la, int mid, int size)
+t_lst		*checker(int mid, int size, t_lsts *l)
 {
-	t_lst	*lb;
-	t_lsts	*l;
-
-	if (!(l = (t_lsts*)malloc(sizeof(t_lsts))))
-		return (NULL);
-	lb = NULL;
-	l->a = la;
-	size = 0;
-	ft_lst_print_cir(&la, -1, 5);
-	while (la->next != l->a)
+	l->mid = size;
+	ft_printf("%d\n", mid);
+	while (size > 3)
 	{
-		if (la->data <= mid)
+		l = push_to_mid(l, mid);
+		if (!(ft_is_sorted(l->b, lst_ct_size(l->b))))
+			l = quick_sort_b(l);
+		while (1);
+		size = lst_ct_size(l->a);
+		if (size > 3)
 		{
-			PB;
-			ft_printf("pb\n");
-			la = l->a;
-			lb = l->b;
+			l->mid = size;
+			mid = (int)find_mid(l->a, size);
 		}
-		else
-			la = la->next;
 	}
-	ft_lst_print_cir(&la, -1, -5);
-	ft_lst_print_cir(&lb, 1, -5);
-	return (la);
+	//ft_lst_print_cir(&l->a, -1, -5);
+	//ft_lst_print_cir(&l->b, 1, -5);
+	return (l->a);
 }
 
 int			main(int av, char **ac)
 {
 	t_lst	*lst;
+	t_lsts	*l;
 	t_lst	*tmp;
+	long		i;
 	int		ct;
 
 	ct = 1;
 	if (av < 2)
 		return (0);
 	if ((string_check(av - 1, &ac[1], 0)) == -1)
-	{
-		ft_printf("BASIC PROBLEMS\n");
 		return (-1);
-	}
 	if (!(lst = init_pars(&ac[1], av - 1)))
-	{
-		ft_printf("PROBLEME WITH DATA PARS\n");
 		return (-1);
-	}
-	tmp = lst;
-	while (tmp->next != lst)
-	{
-		tmp = tmp->next;
-		ct++;
-	}
-	tmp = find_mid(lst, ct);
-	ft_printf("MID = %d ---> Size = %d\n", tmp->data, ct);
-	if (!(tmp = push_swaping(lst, tmp->data, ct)))
+	if ((ct = lst_ct_size(lst)) == -1)
+		return (-1);
+	if ((i = find_mid(lst, ct)) < -2147483648)
+	 	return (-1);
+	if (!(l = (t_lsts*)malloc(sizeof(t_lsts))))
+		return (0);
+	l->a = lst;
+	l->b = NULL;
+	ft_lst_print_cir(&l->a, -1, -5);
+	if (!(tmp = checker(i, ct, l)))
 		return (-1);
 	return (0);
 }
