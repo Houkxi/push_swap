@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:14:04 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/17 18:00:09 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/23 15:01:00 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,23 @@ t_lsts		*push_a(t_lsts *l)
 	t_lst	*tmpa;
 	t_lst	*tmpb;
 
+	ft_printf("PA IN ACTION\n");
+	ft_printf("%d\n", lst_len(l->b));
 	tmpb = l->b;
-	l->b = l->a->next;
-	l->b->prev = tmpb->prev;
-	l->b->prev->next = l->b;
-	if (!l->b)
-	{
-		l->a = tmpb;
-		l->a->prev = l->a;
-		l->a->next = l->a;
-	}
+	if (lst_len(l->b) == 1)
+		l->b = NULL;
 	else
 	{
-		tmpa = l->a;
-		l->a = tmpb;
-		l->a->next = tmpa;
-		l->b->prev = tmpa->prev;
-		l->a->prev->next = tmpb;
-		l->a->next->prev = tmpb;
+		l->b = l->b->next;
+		l->b->prev = tmpb->prev;
+		l->b->prev->next = l->b;
 	}
+	tmpa = l->a;
+	l->a = tmpb;
+	l->a->next = tmpa;
+	l->a->prev = tmpa->prev;
+	l->a->prev->next = tmpb;
+	l->a->next->prev = tmpb;
+	ft_printf("%d\n", lst_len(l->b));
 	return (l);
 }

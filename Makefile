@@ -6,7 +6,7 @@
 #    By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/13 12:47:15 by mmanley           #+#    #+#              #
-#    Updated: 2018/04/17 14:40:06 by mmanley          ###   ########.fr        #
+#    Updated: 2018/04/23 11:53:11 by mmanley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ PSRCS = checker.c\
 		a_list_acts.c\
 		b_list_acts.c\
 		sort_one.c\
+		functional_stuff.c\
+		functional_stuff_2.c\
 
 push :
 	$(CC) push_swap $(CFLAGS) $(PSRCS) ~/libft/libft.a -I ~/libft/includes
