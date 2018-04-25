@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 16:19:19 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/23 16:34:52 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/24 16:42:13 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			find_mid(t_lst *lst, int ct)
 	mid = -2;
 	tmp = lst;
 	size = ct;
-	ft_printf("SIZE = %d\n", size);
+	ft_printf("WHY SIZE = %d\n", size);
 	while (size--)
 	{
 		if (ct % 2 == 0)

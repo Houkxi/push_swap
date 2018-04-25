@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 11:51:23 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/23 18:52:52 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 12:52:34 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,29 +51,30 @@ int			find_pos(t_lst *lst, int curr, int dir1, int dir2)
 	t_lst	*tmp1;
 	t_lst	*tmp2;
 
-	ct = 0;
+	ct = 1;
 	tmp1 = lst->next;
 	tmp2 = lst->prev;
 	res1 = calc_diff(curr, tmp1->data);
 	res2 = calc_diff(curr, tmp2->data);
-	while (tmp1->next != tmp2->prev && ct <= lst_len(lst) / 2)
+	while (tmp1 != tmp2 && ct <= lst_len(lst))
 	{
 		if (res1 > calc_diff(curr, tmp1->data))
 		{
 			res1 = calc_diff(curr, tmp1->data);
-			dir1 = ct;
+			if (curr > tmp1->data)
+				dir1 = ct;
 		}
 		if (res2 > calc_diff(curr, tmp2->data))
 		{
 			res2 = calc_diff(curr, tmp2->data);
-			dir2 = ct;
+			if (curr < tmp2->data)
+				dir2 = ct;
 		}
-		ft_printf("\nprev = %d, curr = %d, next = %d\nres1 = %d, res2 = %d\ndir1 = %d, dir2 = %d, ct = %d\n", tmp2->data, curr, tmp1->data, res1, res2, dir1, dir2, ct);
+		//ft_printf("\n%p\n%p\nprev = %d, curr = %d, next = %d\nres2 = %d, 		res1 = %d\ndir1 = %d, dir2 = %d, ct = %d\n", tmp1->next, tmp2->prev, tmp2->data, curr, tmp1->data, res2, res1, dir1, dir2, ct);
 		ct++;
 		tmp1 = tmp1->next;
 		tmp2 = tmp2->prev;
 	}
-	ft_printf("%d, %d\n", srch(lst, dir1, 1), srch(lst, dir2, -1));
 	if (dir1 == dir2 && srch(lst, dir1, 1) > srch(lst, dir2, -1))
 		dir1++;
 	if (dir2 < dir1)
@@ -82,15 +83,58 @@ int			find_pos(t_lst *lst, int curr, int dir1, int dir2)
 		return (dir1);
 }
 
-int			check_grps(t_lsts *l)
+/*
+int			check_grps(t_lst *l)
 {
 	t_lst	*tmp;
 
-	tmp = l->a;
-	while (tmp->next != l->a)
+	tmp = l;
+	while (tmp->next != l)
 	{
 		ft_printf("GRP : %d\n", tmp->grp);
 		tmp = tmp->next;
 	}
+	ft_printf("GRP : %d\n", tmp->grp);
 	return (0);
+}*/
+
+int			grp_len(t_lst *lst, int grp)
+{
+	t_lst	*tmp;
+	int		ct;
+
+	tmp = lst;
+	ct = 0;
+	while (tmp->next != lst)
+	{
+		if (tmp->grp == grp)
+			ct++;
+		tmp = tmp->next;
+	}
+	return (ct);
+}
+
+int			check_where(t_lst *lst)
+{
+	int		len;
+	int		ct;
+	t_lst	*tmp;
+
+	len = lst_len(lst);
+	ct = 0;
+	tmp = lst;
+	while (tmp->next != lst)
+	{
+		if (tmp->data > tmp->next->data)
+		{
+			tmp = tmp->next;
+			break ;
+		}
+		ct++;
+		tmp = tmp->next;
+	}
+	if (len - ct < len / 2)
+		return (-(len - ct));
+	else
+		return (ct);
 }

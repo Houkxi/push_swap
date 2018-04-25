@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:40:21 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/23 11:58:31 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 12:51:32 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_lst		*lst_init(long nbr)
 	}
 	if (!(new = (t_lst*)malloc(sizeof(t_lst))))
 		return (NULL);
-		new->data = nbr;
+	new->data = nbr;
 	new->grp = -1;
 	new->prev = NULL;
 	new->next = NULL;

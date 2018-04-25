@@ -1,0 +1,8 @@
+SRCS += $(addprefix chkr/, a_list_acts.c\
+							b_list_acts.c\
+							c_lists_acts.c\
+							checker.c)
+
+PSRC += $(addprefix chkr/, a_list_acts.c\
+							b_list_acts.c\
+							c_lists_acts.c)

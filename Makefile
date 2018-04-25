@@ -6,7 +6,7 @@
 #    By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/13 12:47:15 by mmanley           #+#    #+#              #
-#    Updated: 2018/04/23 11:53:11 by mmanley          ###   ########.fr        #
+#    Updated: 2018/04/25 11:07:56 by mmanley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,21 +16,17 @@ CC = gcc -o
 
 CFLAGS = -Wall -Werror -Wextra
 
-PSRCS = checker.c\
-		data_pars.c\
-		start_lst.c\
-		find_mid.c\
-		a_list_acts.c\
-		b_list_acts.c\
-		sort_one.c\
-		functional_stuff.c\
-		functional_stuff_2.c\
+include chkr/make.dep
+include pswp/make.dep
+include srcs/make.dep
+
+all : push check
 
 push :
-	$(CC) push_swap $(CFLAGS) $(PSRCS) ~/libft/libft.a -I ~/libft/includes
+	$(CC) push_swap $(CFLAGS) -I ~/libft/includes -I ./includes $(PSRC) ~/libft/libft.a
 
 check :
-	$(CC) checker $(CFLAGS) $(PSRCS) -I ~/libft/includes ~/libft/libft.a
+	$(CC) checker $(CFLAGS) -I ~/libft/includes -I ./includes $(SRCS) ~/libft/libft.a
 
 clean :
 	rm push_swap
