@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:40:21 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 17:23:57 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 18:26:59 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,15 @@ void		lst_circular(t_lst **lst, t_lst *new)
 		(*lst)->next = *lst;
 		new->prev = *lst;
 	}
+}
+
+t_lsts				*moves(t_lsts *l, int nb)
+{
+	static	t_lsts	*(*actions[11])(t_lsts *l) =\
+	{
+		swap_a, reverse_a, rereverse_a, push_b, swap_b, reverse_b, rereverse_b,\
+		push_a, swap, reverse, rereverse
+	};
+
+	return ((*actions[nb])(l));
 }

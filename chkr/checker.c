@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 12:20:54 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 17:56:25 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 18:26:58 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,8 @@ int			checker(t_lsts *l, char *cmd)
 		if (nb >= 0 && nb <= 10)
 		{
 			if (!(nb >= 4 && nb <= 10 && l->b == NULL))
-				l = (*actions[nb])(l);
+				l = moves(l, nb);
 		}
-		
 		ft_lst_print_cir(&l->a, -1, -5);
 		if (l->b != NULL)
 			ft_lst_print_cir(&l->b, -1, -5);

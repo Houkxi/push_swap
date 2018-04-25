@@ -6,21 +6,24 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:36:25 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 14:15:23 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 18:26:37 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft.h"
-# define SA l = (*actions[0])(l)
-# define RA l = (*actions[1])(l)
-# define RRA l = (*actions[2])(l)
-# define PB	l = (*actions[3])(l)
-# define SB l = (*actions[4])(l)
-# define RB l = (*actions[5])(l)
-# define RRB l = (*actions[6])(l)
-# define PA	l = (*actions[7])(l)
+# define SA l = moves(l, 0)
+# define RA l = moves(l, 1)
+# define RRA l = moves(l, 2)
+# define PB	l = moves(l, 3)
+# define SB l = moves(l, 4)
+# define RB l = moves(l, 5)
+# define RRB l = moves(l, 6)
+# define PA	l = moves(l, 7)
+# define SS	l = moves(l, 8)
+# define RR	l = moves(l, 9)
+# define RRR l = moves(l, 10)
 # define AA l->a->data
 # define AB l->a->next->data
 # define AZ l->a->prev->data
@@ -42,8 +45,7 @@ typedef struct		s_lsts
 	t_lst			*b;
 	int				mid;
 }					t_lsts;
-int			check_grps(t_lst *l);
-
+int					check_grps(t_lst *l);
 int					calc_diff(long a, long b);
 int					check_where(t_lst *lst);
 int					data_check(t_lst *lst, int curr);
@@ -79,9 +81,6 @@ int					srch(t_lst *lst, int x, int ch);
 int					*tab_creat(int size);
 int					tab_cmp_sort(int *tab, t_lst *a);
 t_lsts				*spot_srch(t_lsts *l);
-static	t_lsts		*(*actions[11])(t_lsts *l) =\
-{
-	swap_a, reverse_a, rereverse_a, push_b, swap_b, reverse_b, rereverse_b,\
-	push_a, swap, reverse, rereverse
-};
+t_lsts				*moves(t_lsts *l, int nb);
+
 #endif
