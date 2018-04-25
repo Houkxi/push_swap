@@ -6,7 +6,7 @@
 #    By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/13 12:47:15 by mmanley           #+#    #+#              #
-#    Updated: 2018/04/25 11:07:56 by mmanley          ###   ########.fr        #
+#    Updated: 2018/04/25 14:01:17 by mmanley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,3 +31,5 @@ check :
 clean :
 	rm push_swap
 	rm checker
+
+re : clean all

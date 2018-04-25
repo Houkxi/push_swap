@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:14:04 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/24 13:45:04 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 18:12:02 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 t_lsts		*swap_b(t_lsts *l)
 {
-	t_lst	*tmp;
+	t_lst	*tmp1;
+	t_lst	*tmp2;
 
-	tmp = (t_lst*)malloc(sizeof(t_lst));
-	tmp->data = l->b->data;
-	l->b->data = l->b->next->data;
-	l->b->next->data = tmp->data;
-	free(tmp);
-	tmp = NULL;
+	tmp1 = l->b;
+	tmp2 = l->b->next;
+	l->b = l->b->next;
+	tmp1->next = l->b->next;
+	l->b->next = tmp1;
+	l->b->prev = tmp1->prev;
+	tmp1->prev = l->b;
+	l->b->prev->next = l->b;
+	if (lst_len(l->b) <= 3)
+		l->b->prev->prev = l->b->next;
 	return (l);
 }
 
@@ -55,7 +60,7 @@ t_lsts		*push_a(t_lsts *l)
 	l->a = tmpb;
 	l->a->next = tmpa;
 	l->a->prev = tmpa->prev;
-	l->a->prev->next = tmpb;
-	l->a->next->prev = tmpb;
+	l->a->prev->next = l->a;
+	l->a->next->prev = l->a;
 	return (l);
 }

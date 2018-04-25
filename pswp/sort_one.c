@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:36:15 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/24 17:00:37 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 17:21:08 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_lsts		*quicksort_a(t_lsts *l, int size)
 			RA;
 			ft_printf("ra\n");
 		}*/
-		//ft_printf("%d, %d\n", pos, l->a->grp);
+		ft_printf("%d, %d\n", pos, l->a->grp);
 		pos = find_pos(l->a, l->a->data, 1, 1);
 		//ft_lst_print_cir(&l->a, -1, -5);
 		//ft_printf("%d, %d\n", pos, l->a->grp);

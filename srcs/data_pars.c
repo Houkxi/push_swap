@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:55:21 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/17 12:39:35 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 17:57:46 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,24 @@ void			ft_lst_print_cir(t_lst **alst, int nb_lst, int add)
 			{
 				ft_printf("A LIST : %- 12d", tmp->data);
 				if (add < 0)
-					ft_printf("	---adresse---> %p", tmp);
+					ft_printf("	---adresse--> %p , --Next--> %p --spot--> %d", tmp, tmp->next, tmp->spot);
 				ft_printf("\n");
 			}
 			else
 			{
-				ft_printf("B LIST : %- 12d", tmp->data);
+				ft_printf("B LIST : %- 10d", tmp->data);
 				if (add < 0)
-					ft_printf("	---adresse---> %p", tmp);
+					ft_printf("	---adresse--> %p , --Next--> %p --spot--> %d", tmp, tmp->next, tmp->spot);
 				ft_printf("\n");
 			}
 			tmp = tmp->next;
 		}
 		ft_printf("E DATA : %- 12d", tmp->data);
 		if (add < 0)
-			ft_printf("	---adresse---> %p, --Next--> %p", tmp, tmp->next);
+		{
+			ft_printf("	---adresse---> %p, --Next--> %p\n", tmp, tmp->next);
+			ft_printf("%25y--spot--> %d", tmp->spot);
+		}
 		ft_printf("\n*************\n");
 	}
 }
@@ -112,7 +115,6 @@ t_lst			*init_pars(char **ac, int av)
 	{
 		if (!(tmp = pars_nbrs(nbrs[z], av, lst)))
 		{
-			ft_printf("PARS NBRS PBS\n");
 			ft_big_deltab(nbrs, av);
 			return (NULL);
 		}
@@ -121,4 +123,43 @@ t_lst			*init_pars(char **ac, int av)
 	}
 	ft_big_deltab(nbrs, av);
 	return (lst);
+}
+
+t_lsts			*spot_srch(t_lsts *l)
+{
+	t_lst		*tmp;
+	t_lst		*tmp2;
+	int			sv;
+	int			x;
+
+	tmp = l->a;
+	tmp2 = l->a;
+	x = 0;
+	while (tmp2->next != l->a)
+	{
+		sv = tmp2->data;
+		while (tmp->next != l->a)
+		{
+			if (sv > tmp->data)
+				x++;
+			tmp = tmp->next;
+		}
+		if (sv > tmp->data)
+			x++;
+		tmp2->spot = x;
+		x = 0;
+		tmp2 = tmp2->next;
+		tmp = l->a;
+	}
+	sv = tmp2->data;
+	while (tmp->next != l->a)
+	{
+		if (sv > tmp->data)
+			x++;
+		tmp = tmp->next;
+	}
+	if (sv > tmp->data)
+		x++;
+	tmp2->spot = x;
+	return (l);
 }

@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 12:20:54 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 12:51:48 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 17:56:25 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			string_check(int av, char **ac, int ch)
 			(ac[y][x] == '-' && ((ac[y][x - 1] != ' ' && x != 0) ||
 			ft_isdigit(ac[y][x + 1]) == 0)))
 			{
-				ft_printf("_%c_\nError, %3d\n", ac[y][x], ch);
+				ft_printf("Error\n");
 				return (-1);
 			}
 			x++;
@@ -62,7 +62,7 @@ int			checker(t_lsts *l, char *cmd)
 	int		nb;
 
 	tab = ft_strsplit("sa ra rra pb sb rb rrb pa ss rr rrr", ' ');
-	while (get_next_line(1, &cmd) > 0)
+	while (get_next_line(0, &cmd) > 0)
 	{
 		nb = cmd_tabcmp(cmd, tab);
 		if (nb >= 0 && nb <= 10)
@@ -70,6 +70,7 @@ int			checker(t_lsts *l, char *cmd)
 			if (!(nb >= 4 && nb <= 10 && l->b == NULL))
 				l = (*actions[nb])(l);
 		}
+		
 		ft_lst_print_cir(&l->a, -1, -5);
 		if (l->b != NULL)
 			ft_lst_print_cir(&l->b, -1, -5);
@@ -98,8 +99,14 @@ int			main(int av, char **ac)
 		return (0);
 	l->a = lst;
 	l->b = NULL;
-	ft_lst_print_cir(&l->a, -1, -5);
+	ft_lst_print_cir(&l->a, -1, 5);
+	if (is_sorted_incr(l->a, ct) == ct)
+	{
+		ft_printf("Already sorted\n");
+		return (0);
+	}
 	checker(l, str);
+	ft_lst_print_cir(&l->a, -1, 5);
 	if (is_sorted_incr(l->a, ct) == ct)
 		ft_printf("OK\n");
 	return (0);

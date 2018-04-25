@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 11:51:23 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 12:52:34 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 14:00:21 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,6 @@ int			find_pos(t_lst *lst, int curr, int dir1, int dir2)
 	else
 		return (dir1);
 }
-
-/*
-int			check_grps(t_lst *l)
-{
-	t_lst	*tmp;
-
-	tmp = l;
-	while (tmp->next != l)
-	{
-		ft_printf("GRP : %d\n", tmp->grp);
-		tmp = tmp->next;
-	}
-	ft_printf("GRP : %d\n", tmp->grp);
-	return (0);
-}*/
 
 int			grp_len(t_lst *lst, int grp)
 {

@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 09:27:08 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 12:48:42 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 18:11:44 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 t_lsts		*swap_a(t_lsts *l)
 {
-	t_lst	*tmp;
+	t_lst	*tmp1;
+	t_lst	*tmp2;
 
-	tmp = (t_lst*)malloc(sizeof(t_lst));
-	tmp->data = l->a->data;
-	l->a->data = l->a->next->data;
-	l->a->next->data = tmp->data;
-	free(tmp);
-	tmp = NULL;
+	tmp1 = l->a;
+	tmp2 = l->a->next;
+	l->a = l->a->next;
+	tmp1->next = l->a->next;
+	l->a->next = tmp1;
+	l->a->prev = tmp1->prev;
+	tmp1->prev = l->a;
+	l->a->prev->next = l->a;
+	if (lst_len(l->a) <= 3)
+		l->a->prev->prev = l->a->next;
 	return (l);
 }
 

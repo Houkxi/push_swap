@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 12:20:54 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 10:39:57 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 14:29:22 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int			push_swap(int mid, int size, t_lsts *l, int grp)
 	int			ct3;
 	int			orgsz;
 	int tp = 0;
+	int		*tab;
 
 	tmp = l->a;
 	ct = 1;
@@ -54,8 +55,10 @@ int			push_swap(int mid, int size, t_lsts *l, int grp)
 	orgsz = size;
 	l->mid = size;
 	size -= 1;
-	while (orgsz != size)
+	tab = tab_creat(size);
+	while (tab_cmp_sort(tab, l->a) == -1)
 	{
+		ft_printf("\nTAB CMP : %d\n", tab_cmp_sort(tab, l->a));
 		if (is_sorted_incr(l->a, size) > 0)
 		{
 			//ft_lst_print_cir(&l->a, -1, 5);
@@ -84,7 +87,7 @@ int			push_swap(int mid, int size, t_lsts *l, int grp)
 			size += ct;
 			ct = 0;
 			ft_printf("2sz %d != ct %d\n", size, ct);
-			ft_lst_print_cir(&l->a, -1, 5);
+			ft_lst_print_cir(&l->a, -1, -5);
 			tp++;
 			/*if (tp == 9)
 				while (1);*/
@@ -137,6 +140,8 @@ int			main(int av, char **ac)
 		tmp = tmp->next;
 	}
 	check_grps(l->a);
+	l = spot_srch(l);
+	ft_lst_print_cir(&l->a, -1, -5);
 	push_swap(mid, ct, l, 1);
 	//while ((push_swap(mid, ct, l, 1, 0, 0)))
 		//return (-1);

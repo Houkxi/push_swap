@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:36:25 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 11:06:38 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 14:15:23 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct		s_lst
 {
 	int				data;
 	int				grp;
+	int				spot;
 	struct s_lst	*prev;
 	struct s_lst	*next;
 }					t_lst;
@@ -75,6 +76,9 @@ t_lsts				*swap(t_lsts *l);
 t_lsts				*swap_a(t_lsts *l);
 t_lsts				*swap_b(t_lsts *l);
 int					srch(t_lst *lst, int x, int ch);
+int					*tab_creat(int size);
+int					tab_cmp_sort(int *tab, t_lst *a);
+t_lsts				*spot_srch(t_lsts *l);
 static	t_lsts		*(*actions[11])(t_lsts *l) =\
 {
 	swap_a, reverse_a, rereverse_a, push_b, swap_b, reverse_b, rereverse_b,\

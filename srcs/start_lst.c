@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:40:21 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 12:51:32 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/25 17:23:57 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_lst		*lst_init(long nbr)
 		return (NULL);
 	new->data = nbr;
 	new->grp = -1;
+	new->spot = -1;
 	new->prev = NULL;
 	new->next = NULL;
 	return (new);
@@ -43,7 +44,7 @@ int			data_check(t_lst *lst, int curr)
 		{
 			if (curr == tmp->data)
 			{
-				ft_printf("Same nbr = %d\n", curr);
+				ft_printf("Error\n");
 				return (-1);
 			}
 			tmp = tmp->next;
