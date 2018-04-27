@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 12:20:54 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 18:26:58 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/27 19:47:48 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int			checker(t_lsts *l, char *cmd)
 		if (nb >= 0 && nb <= 10)
 		{
 			if (!(nb >= 4 && nb <= 10 && l->b == NULL))
-				l = moves(l, nb);
+				l = moving(l, nb);
 		}
 		ft_lst_print_cir(&l->a, -1, -5);
 		if (l->b != NULL)
@@ -92,21 +92,19 @@ int			main(int av, char **ac)
 		return (-1);
 	if (!(lst = init_pars(&ac[1], av - 1)))
 		return (-1);
-	if ((ct = lst_len(lst)) == -1)
+	if ((ct = ft_lstlen(lst)) == -1)
 		return (-1);
 	if (!(l = (t_lsts*)malloc(sizeof(t_lsts))))
 		return (0);
 	l->a = lst;
 	l->b = NULL;
 	ft_lst_print_cir(&l->a, -1, 5);
-	if (is_sorted_incr(l->a, ct) == ct)
-	{
-		ft_printf("Already sorted\n");
+	change_lst(l->a);
+	if (ft_are_sorted_a(l->a) == 0)
 		return (0);
-	}
 	checker(l, str);
 	ft_lst_print_cir(&l->a, -1, 5);
-	if (is_sorted_incr(l->a, ct) == ct)
-		ft_printf("OK\n");
+	if (ft_are_sorted_a(l->a) == 0)
+		return (0);
 	return (0);
 }

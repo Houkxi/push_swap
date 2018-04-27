@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/23 11:51:23 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 14:00:21 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/27 19:18:31 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			find_pos(t_lst *lst, int curr, int dir1, int dir2)
 	tmp2 = lst->prev;
 	res1 = calc_diff(curr, tmp1->data);
 	res2 = calc_diff(curr, tmp2->data);
-	while (tmp1 != tmp2 && ct <= lst_len(lst))
+	while (tmp1 != tmp2 && ct <= ft_lstlen(lst))
 	{
 		if (res1 > calc_diff(curr, tmp1->data))
 		{
@@ -70,7 +70,6 @@ int			find_pos(t_lst *lst, int curr, int dir1, int dir2)
 			if (curr < tmp2->data)
 				dir2 = ct;
 		}
-		//ft_printf("\n%p\n%p\nprev = %d, curr = %d, next = %d\nres2 = %d, 		res1 = %d\ndir1 = %d, dir2 = %d, ct = %d\n", tmp1->next, tmp2->prev, tmp2->data, curr, tmp1->data, res2, res1, dir1, dir2, ct);
 		ct++;
 		tmp1 = tmp1->next;
 		tmp2 = tmp2->prev;
@@ -83,29 +82,13 @@ int			find_pos(t_lst *lst, int curr, int dir1, int dir2)
 		return (dir1);
 }
 
-int			grp_len(t_lst *lst, int grp)
-{
-	t_lst	*tmp;
-	int		ct;
-
-	tmp = lst;
-	ct = 0;
-	while (tmp->next != lst)
-	{
-		if (tmp->grp == grp)
-			ct++;
-		tmp = tmp->next;
-	}
-	return (ct);
-}
-
 int			check_where(t_lst *lst)
 {
 	int		len;
 	int		ct;
 	t_lst	*tmp;
 
-	len = lst_len(lst);
+	len = ft_lstlen(lst);
 	ct = 0;
 	tmp = lst;
 	while (tmp->next != lst)

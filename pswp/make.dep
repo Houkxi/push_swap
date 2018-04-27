@@ -1,4 +1,3 @@
 PSRC += $(addprefix pswp/, find_mid.c\
 							push_swap.c\
-							sort_one.c\
-							functional_stuff_3.c)
+							sort_one.c)

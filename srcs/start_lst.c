@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:40:21 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 18:26:59 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/27 19:32:43 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ t_lst		*lst_init(long nbr)
 	if (!(new = (t_lst*)malloc(sizeof(t_lst))))
 		return (NULL);
 	new->data = nbr;
-	new->grp = -1;
-	new->spot = -1;
+	new->val = 0;
 	new->prev = NULL;
 	new->next = NULL;
 	return (new);
@@ -79,7 +78,7 @@ void		lst_circular(t_lst **lst, t_lst *new)
 	}
 }
 
-t_lsts				*moves(t_lsts *l, int nb)
+t_lsts				*moving(t_lsts *l, int nb)
 {
 	static	t_lsts	*(*actions[11])(t_lsts *l) =\
 	{

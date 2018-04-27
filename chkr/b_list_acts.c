@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 11:14:04 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/25 18:12:02 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/27 19:24:02 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_lsts		*swap_b(t_lsts *l)
 	l->b->prev = tmp1->prev;
 	tmp1->prev = l->b;
 	l->b->prev->next = l->b;
-	if (lst_len(l->b) <= 3)
+	if (ft_lstlen(l->b) <= 3)
 		l->b->prev->prev = l->b->next;
 	return (l);
 }
@@ -48,7 +48,7 @@ t_lsts		*push_a(t_lsts *l)
 	t_lst	*tmpb;
 
 	tmpb = l->b;
-	if (lst_len(l->b) == 1)
+	if (ft_lstlen(l->b) == 1)
 		l->b = NULL;
 	else
 	{

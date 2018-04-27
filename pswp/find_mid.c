@@ -6,77 +6,61 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 16:19:19 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/24 16:42:13 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/27 19:42:24 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			mid_4_odd(t_lst *lst, int mid, int size)
+int			*ft_get_arr(t_lst *a, int len)
 {
-	int		ct1;
-	int		ct2;
-	t_lst	*tmp;
+	int		*arr;
+	int		i;
+	t_lst	*temp;
 
-	ct1 = 0;
-	ct2 = 0;
-	tmp = lst;
-	while (ct1 + ct2 < size - 1)
+	i = 0;
+	temp = a;
+	if (!(arr = malloc(sizeof(int) * len)))
+		return (NULL);
+	arr[i] = a->val;
+	a = a->next;
+	while (len--)
 	{
-		if (mid > tmp->data)
-			ct1++;
-		else if (mid < tmp->data)
-			ct2++;
-		tmp = tmp->next;
+		i++;
+		arr[i] = a->val;
+		a = a->next;
 	}
-	if (ct1 == ct2)
-		return (mid);
-	else
-		return (-1);
+	return (arr);
 }
 
-int			mid_4_even(t_lst *lst, int mid, int size)
+int			ft_find_middle(t_lst *lst, int k, int len)
 {
-	int		ct1;
-	int		ct2;
-	t_lst	*tmp;
+	int		val;
+	int		more;
+	int		less;
+	int		i;
+	int		*arr;
 
-	ct1 = 0;
-	ct2 = 0;
-	tmp = lst;
-	while (ct1 + ct2 < size)
+	if (len == 0)
+		len = ft_lstlen(lst);
+	arr = ft_get_arr(lst, len);
+	k = len;
+	while (k--)
 	{
-		if (mid >= tmp->data)
-			ct1++;
-		else if (mid <= tmp->data)
-			ct2++;
-		tmp = tmp->next;
+		i = 0;
+		more = 0;
+		less = 0;
+		val = arr[k];
+		while (i < len)
+		{
+			if (val < arr[i])
+				more++;
+			else
+				less++;
+			i++;
+		}
+		if (more - less == 0 || (len % 2 == 1 && more - less == 1))
+			return (val);
 	}
-	if (ct1 == ct2)
-		return (mid);
-	else
-		return (-1);
-}
-
-int			find_mid(t_lst *lst, int ct)
-{
-	int		mid;
-	int		size;
-	t_lst	*tmp;
-
-	mid = -2;
-	tmp = lst;
-	size = ct;
-	ft_printf("WHY SIZE = %d\n", size);
-	while (size--)
-	{
-		if (ct % 2 == 0)
-			mid = mid_4_even(lst, tmp->data, ct);
-		if (ct % 2 == 1)
-			mid = mid_4_odd(lst, tmp->data, ct);
-		if (mid != -1)
-			return (tmp->data);
-		tmp = tmp->next;
-	}
-	return (0);
+	return (val);
 }

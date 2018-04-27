@@ -6,59 +6,28 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/21 16:31:35 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/23 14:15:49 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/04/27 19:36:12 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			is_sorted_incr(t_lst *lst, int size)
+int			ft_are_sorted_a(t_lst *lst)
 {
-	int		x;
 	t_lst	*tmp;
 
-	x = 1;
-	if (!lst)
-		return (-1);
-	tmp = lst;
-	while (x < size && tmp->next != lst)
+	tmp = lst->prev;
+	while (lst != tmp)
 	{
-		if (tmp->data < tmp->next->data)
-			x++;
+		if (lst->val == (lst->next->val - 1))
+			lst = lst->next;
 		else
-		{
-			x = 0;
-			break ;
-		}
-		tmp = tmp->next;
+			return (1);
 	}
-	return (x);
+	return (0);
 }
 
-int			is_sorted_decr(t_lst *lst, int size)
-{
-	int		x;
-	t_lst	*tmp;
-
-	x = 1;
-	if (!lst)
-		return (-1);
-	tmp = lst;
-	while (x < size && tmp->next != lst)
-	{
-		if (tmp->data > tmp->next->data)
-			x++;
-		else
-		{
-			x = 0;
-			break ;
-		}
-		tmp = tmp->next;
-	}
-	return (x);
-}
-
-int			lst_len(t_lst *lst)
+int			ft_lstlen(t_lst *lst)
 {
 	int		i;
 	t_lst	*tmp;
@@ -77,38 +46,41 @@ int			lst_len(t_lst *lst)
 	return (i);
 }
 
-int			find_min(t_lst *lst)
+int		loop_spot(t_lst *a, int sv)
 {
 	t_lst	*tmp;
-	int		tp;
+	int	x;
 
-	tp = 2147483647;
-	tmp = lst;
-	while (tmp->next != lst)
+	x = 0;
+	tmp = a;
+	while (tmp->next != a)
 	{
-		if (tmp->data <= tp)
-			tp = tmp->data;
+		if (sv > tmp->data)
+			x++;
 		tmp = tmp->next;
 	}
-	if (tmp->data <= tp)
-		tp = tmp->data;
-	return (tp);
+	if (sv > tmp->data)
+		x++;
+	return (x);
 }
 
-int			find_max(t_lst *lst)
+t_lst	*change_lst(t_lst *a)
 {
-	t_lst	*tmp;
-	int		tp;
+	t_lst       *tmp2;
+	int         sv;
+	int         x;
 
-	tp = -2147483648;
-	tmp = lst;
-	while (tmp->next != lst)
+	tmp2 = a;
+	x = 0;
+	while (tmp2->next != a)
 	{
-		if (tmp->data >= tp)
-			tp = tmp->data;
-		tmp = tmp->next;
+		sv = tmp2->data;
+		x = loop_spot(a, sv);
+		tmp2->val = x;
+		tmp2 = tmp2->next;
 	}
-	if (tmp->data <= tp)
-		tp = tmp->data;
-	return (tp);
+	sv = tmp2->data;
+	x = loop_spot(a, sv);
+	tmp2->val = x;
+	return (tmp2);
 }
