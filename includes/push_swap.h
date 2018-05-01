@@ -3,86 +3,107 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/13 13:36:25 by mmanley           #+#    #+#             */
-/*   Updated: 2018/04/27 19:46:55 by mmanley          ###   ########.fr       */
+/*   Created: 2018/03/14 16:03:02 by cfavero           #+#    #+#             */
+/*   Updated: 2018/05/01 18:00:13 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "libft.h"
-# include <limits.h>
-# define SA l = moving(l, 0)
-# define RA l = moving(l, 1)
-# define RRA l = moving(l, 2)
-# define PB	l = moving(l, 3)
-# define SB l = moving(l, 4)
-# define RB l = moving(l, 5)
-# define RRB l = moving(l, 6)
-# define PA	l = moving(l, 7)
-# define SS	l = moving(l, 8)
-# define RR	l = moving(l, 9)
-# define RRR l = moving(l, 10)
-# define AA l->a->val
-# define AB l->a->next->val
-# define AZ l->a->prev->val
-# define BA l->b->val
-# define BB l->b->next->val
-# define BZ l->b->prev->val
-
+# include "../printf/libft/libft.h"
+# include "../printf/ft_printf.h"
+# define SA data->tab_f[0].f(&data->lst_a, &data->lst_b)
+# define SB data->tab_f[1].f(&data->lst_a, &data->lst_b)
+# define SS data->tab_f[2].f(&data->lst_a, &data->lst_b)
+# define PA data->tab_f[3].f(&data->lst_a, &data->lst_b)
+# define PB data->tab_f[4].f(&data->lst_a, &data->lst_b)
+# define RA data->tab_f[5].f(&data->lst_a, &data->lst_b)
+# define RB data->tab_f[6].f(&data->lst_a, &data->lst_b)
+# define RR data->tab_f[7].f(&data->lst_a, &data->lst_b)
+# define RRA data->tab_f[8].f(&data->lst_a, &data->lst_b)
+# define RRB data->tab_f[9].f(&data->lst_a, &data->lst_b)
+# define RRR data->tab_f[10].f(&data->lst_a, &data->lst_b)
+# define AA data->lst_a->val
+# define AB data->lst_a->next->val
+# define AC data->lst_a->next->next->val
+# define AZ data->lst_a->prev->val
+# define BA data->lst_b->val
+# define BB data->lst_b->next->val
+# define BZ data->lst_b->prev->val
+enum {A = 1, B = 2, C = 4, D = 8, E = 16, F = 32, G = 64, HE = 128, I = 256,
+	JAY = 512, K = 1024, EL = 2048, M = 4096, N = 8192, O = 16384, P = 32768,
+	Q = 65536, R = 131072, S = 262144, T = 524288, U = 1048576, V = 2097152};
 typedef struct		s_lst
 {
-	int				data;
+	int				exval;
 	int				val;
-	struct s_lst	*prev;
 	struct s_lst	*next;
+	struct s_lst	*prev;
 }					t_lst;
-typedef struct		s_lsts
-{
-	t_lst			*a;
-	t_lst			*b;
-	int				mid;
-}					t_lsts;
+
 typedef struct		s_grp
 {
 	int				group;
-	struct	s_grp	*next;
+	struct s_grp	*next;
 }					t_grp;
-int					data_check(t_lst *lst, int curr);
-void				ft_lst_print_cir(t_lst **alst, int nb_lst, int add);
 
-int					ft_are_sorted_a(t_lst *lst);
-int					ft_solve_a(t_lsts *data);
-int					ft_move_on_a(t_lsts *data, int middle, int *max);
-int					ft_move_on_b(t_lsts *data, int middle, int max);
-int					loop_spot(t_lst *a, int sv);
+typedef struct		s_moves
+{
+	char			*move;
+	struct s_moves	*next;
+}					t_moves;
+
+typedef struct		s_tab
+{
+	char			*str;
+	int				(*f)(t_lst **a, t_lst **b);
+}					t_tab;
+
+typedef struct		s_all
+{
+	t_lst			*lst_a;
+	t_lst			*lst_b;
+	t_moves			*lst_move;
+	t_tab			*tab_f;
+}					t_all;
+
+int					ft_take_com(char *com, t_all *data);
+void				ft_print_moves(t_moves *lst);
+void				ft_lstadd_end(t_moves **alst, t_moves *new, char *s);
+int					loop_spot(t_lst *tmp, int sv);
 t_lst				*change_lst(t_lst *a);
-int					ft_quicksort(t_lsts *data);
-t_lsts				*moving(t_lsts *l, int nb);
-int					ft_find_middle(t_lst *lst, int k, int len);
-
-t_lst				*init_pars(char **ac, int av);
-t_lst				*lst_init(long nbr);
-void				lst_circular(t_lst **lst, t_lst *new);
+t_grp				*ft_first_push(t_all **data, int elem_lst_a, t_grp *lst);
+int					ft_quicksort(t_all *data);
+int					ft_move_on_b(t_all *data, int middle, int max, int elem);
+int					ft_move_on_a(t_all *data, int middle, int *max);
 int					ft_lstlen(t_lst *lst);
-t_lsts				*push_a(t_lsts *l);
-t_lsts				*push_b(t_lsts *l);
-t_lsts				*push_on_a(t_lsts *l, int mid, int *ct);
-t_lsts				*push_on_b(t_lsts *l, int mid, int *ct);
-t_lsts				*reverse(t_lsts *l);
-t_lsts				*reverse_a(t_lsts *l);
-t_lsts				*reverse_b(t_lsts *l);
-t_lsts				*rereverse(t_lsts *l);
-t_lsts				*rereverse_a(t_lsts *l);
-t_lsts				*rereverse_b(t_lsts *l);
-t_lsts				*swap(t_lsts *l);
-t_lsts				*swap_a(t_lsts *l);
-t_lsts				*swap_b(t_lsts *l);
-int					srch(t_lst *lst, int x, int ch);
-int					*tab_creat(int size);
-int					tab_cmp_sort(int *tab, t_lst *a);
-t_lsts				*spot_srch(t_lsts *l);
+int					ft_find_middle(t_lst *lst, int k, int len);
+int					ft_are_sorted_a_exval(t_lst *lst);
+int					ft_are_sorted_a_val(t_lst *lst);
+int					ft_errors(t_lst *a, int len);
+int					ft_are_int(int ac, char **av);
+int					ft_checker(int ac, char **av, t_all *data);
+int					ft_solve_a(t_all *data);
+int					ft_sort(t_all *data);
+int					ft_fill(int ac, char **av, t_all **data);
+void				ft_print_stack(t_lst *lst);
+int					ft_create_list(t_lst **lst, t_lst *temp);
+int					ft_get_list(int ac, char **av, t_lst **lst);
+int					ft_s_a(t_lst **a, t_lst **b);
+int					ft_s_b(t_lst **a, t_lst **b);
+int					ft_s_s(t_lst **a, t_lst **b);
+int					ft_p_a(t_lst **a, t_lst **b);
+int					ft_p_b(t_lst **a, t_lst **b);
+int					ft_r_a(t_lst **a, t_lst **b);
+int					ft_r_b(t_lst **a, t_lst **b);
+int					ft_r_r(t_lst **a, t_lst **b);
+int					ft_rr_a(t_lst **a, t_lst **b);
+int					ft_rr_b(t_lst **a, t_lst **b);
+int					ft_rr_r(t_lst **a, t_lst **b);
+char				**option_check(char **ac, int av, int *opt);
+void				ft_print_bits(unsigned int octet, int size);
+void				opts_cmds(t_all *data, int opt);
 
 #endif
