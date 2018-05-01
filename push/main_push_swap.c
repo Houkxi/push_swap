@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 11:45:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/01 18:08:50 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/01 18:35:59 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ int			main(int ac, char **av)
 		ft_printf("option Error\n");
 		return (0);
 	}
-	ft_print_bits(opt, 32);
-	ft_printf("_%s_\n", av[1]);
-	ft_printf("_%s_\n", av[2]);
-	ft_printf("_%s_\n", av[3]);
+	if (opt & O)
+	{
+		ft_print_bits(opt, 32);
+		ft_printf("\n");
+	}
 	if (ft_are_int(ac, av) != 0)
 	{
 		ft_printf("Error\n");
@@ -45,7 +46,7 @@ int			main(int ac, char **av)
 //	ft_print_stack(data->lst_a);
 	ft_quicksort(data);
 	//ft_printf("-----------\n");
-	if (opt & V || opt & P || opt & B)
+	if (opt & V || opt & P || opt & B || opt & C)
 		opts_cmds(data, opt);
 	else
 		ft_print_moves(data->lst_move);
