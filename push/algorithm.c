@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 14:09:25 by cfavero           #+#    #+#             */
-/*   Updated: 2018/04/27 17:49:11 by cfavero          ###   ########.fr       */
+/*   Updated: 2018/05/03 12:03:54 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	ft_lst_del_2(t_grp **lst)
 {
 	t_grp   *tmp;
 
-    tmp = *lst;
-    if (tmp->group == 0)
-    {
+	tmp = *lst;
+	if (tmp->group == 0)
+	{
 		free(tmp);
 		tmp = tmp->next;
 	}

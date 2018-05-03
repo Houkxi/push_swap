@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:16:18 by cfavero           #+#    #+#             */
-/*   Updated: 2018/04/28 16:53:50 by cfavero          ###   ########.fr       */
+/*   Updated: 2018/05/03 12:03:14 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+
 
 int					ft_create_list(t_lst **lst, t_lst *temp)
 {
@@ -67,20 +67,20 @@ static int			ft_list(t_lst **lst, int nb)
 
 static void			ft_deltab(char **tab)
 {
-    int y;
- 
-    y = 0;
-    if (tab)
-    {
-        while (tab[y])
-        {
-            free(tab[y]);
-            tab[y] = NULL;
-            y++;
-        }
-        free(tab);
-        tab = NULL;
-    }
+	int y;
+
+	y = 0;
+	if (tab)
+	{
+		while (tab[y])
+		{
+			free(tab[y]);
+			tab[y] = NULL;
+			y++;
+		}
+		free(tab);
+		tab = NULL;
+	}
 }
 
 int					ft_get_list(int ac, char **av, t_lst **lst_a)
