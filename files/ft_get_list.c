@@ -37,11 +37,12 @@ int					ft_fill(int ac, char **av, t_all **data)
 		{"rr", ft_r_r}, {"rra", ft_rr_a}, {"rrb", ft_rr_b}, {"rrr", ft_rr_r},
 		{NULL, NULL}};
 
-	if (!(*data = malloc(sizeof(**data))))
+	if (!(*data = (t_all*)malloc(sizeof(t_all))))
 		return (-1);
 	(*data)->lst_a = NULL;
 	(*data)->lst_b = NULL;
-	(*data)->lst_move = NULL;
+	// (*data)->lst_move = NULL;
+	(*data)->round = 0;
 	(*data)->tab_f = f;
 	if (!(ft_get_list(ac, av, &((*data)->lst_a))))
 		return (-1);
@@ -57,6 +58,7 @@ static int			ft_list(t_lst **lst, int nb)
 	if (!(temp = (t_lst*)malloc(sizeof(t_lst))))
 		return (-1);
 	temp->exval = nb;
+	temp->val = 0;
 	temp->prev = NULL;
 	temp->next = !(*lst) ? NULL : *lst;
 	ft_create_list(lst, temp);

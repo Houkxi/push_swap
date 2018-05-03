@@ -6,7 +6,7 @@
 /*   By: exam <exam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:32:46 by exam              #+#    #+#             */
-/*   Updated: 2018/05/01 17:50:16 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/03 11:48:40 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char		*options(char *s, int *oct)
 
 	x = 1;
 	ret = 0;
-	if (s[0] != '-' || (s[x] == '-' && ft_isdigit(s[x + 1])))
+	if (s[0] != '-' || (s[0] == '-' && ft_isdigit(s[x + 1])))
 		return (s);
 	s[0] = ' ';
 	while (s[x])
@@ -89,15 +89,9 @@ char		**option_check(char **av, int ac, int *opt)
 	while (i < ac)
 	{
 		if (av[i][0] == '-' && !(av[i] = options(av[i], &sv)))
-		{
-			ft_printf("Invalid Option\n");
 			return (NULL);
-		}
 		else if (sv & 128)
-		{
-			ft_printf("options: abcdefghijklmnopqrstuvwxyz\n");
 			return (NULL);
-		}
 		i++;
 	}
 	*opt = sv;

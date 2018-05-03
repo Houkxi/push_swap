@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_stack.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 16:13:24 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/01 18:11:22 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/03/20 16:24:02 by cfavero          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,16 @@ void	ft_print_stack(t_lst *lst)
 	if (!(lst))
 		return ;
 	tmp = lst->prev;
-	ft_printf("\n--STACK--\n");
 	while (lst != tmp)
 	{
-		ft_printf("% -5d\n", (lst)->exval);
+		ft_printf("%d--%d\n", (lst)->exval, lst->val);
 		(lst) = (lst)->next;
 	}
 	if (tmp)
-		ft_printf("% -5d\n---------\n", (lst)->exval);
+		ft_printf("%d--%d\n------\n", (lst)->exval, lst->val);
 }
 
-void	ft_print_moves(t_moves *lst)
+/*void	ft_print_moves(t_moves *lst)
 {
 	t_moves *tmp;
 
@@ -42,4 +41,4 @@ void	ft_print_moves(t_moves *lst)
 		tmp = tmp->next;
 	}
 	ft_putstr(tmp->move);
-}
+}*/

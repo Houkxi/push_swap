@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 16:03:02 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/01 18:00:13 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/03 11:42:53 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define RRR data->tab_f[10].f(&data->lst_a, &data->lst_b)
 # define AA data->lst_a->val
 # define AB data->lst_a->next->val
-# define AC data->lst_a->next->next->val
 # define AZ data->lst_a->prev->val
 # define BA data->lst_b->val
 # define BB data->lst_b->next->val
@@ -49,11 +48,11 @@ typedef struct		s_grp
 	struct s_grp	*next;
 }					t_grp;
 
-typedef struct		s_moves
+/*typedef struct		s_moves
 {
 	char			*move;
 	struct s_moves	*next;
-}					t_moves;
+}					t_moves;*/
 
 typedef struct		s_tab
 {
@@ -65,13 +64,18 @@ typedef struct		s_all
 {
 	t_lst			*lst_a;
 	t_lst			*lst_b;
-	t_moves			*lst_move;
+	// t_moves			*lst_move;
 	t_tab			*tab_f;
+	int				round;
 }					t_all;
 
+void				opts_cmds(t_all *data, int opt);
+char				**option_check(char **av, int ac, int *opt);
+// t_moves				*ft_cleaning_lst(t_all *data, t_moves *lst);
+// t_moves				*ft_free_moves(t_moves *lst, int size);
 int					ft_take_com(char *com, t_all *data);
-void				ft_print_moves(t_moves *lst);
-void				ft_lstadd_end(t_moves **alst, t_moves *new, char *s);
+// void				ft_print_moves(t_moves *lst);
+// void				ft_lstadd_end(t_moves **alst, t_moves *new, char *s);
 int					loop_spot(t_lst *tmp, int sv);
 t_lst				*change_lst(t_lst *a);
 t_grp				*ft_first_push(t_all **data, int elem_lst_a, t_grp *lst);
@@ -102,8 +106,4 @@ int					ft_r_r(t_lst **a, t_lst **b);
 int					ft_rr_a(t_lst **a, t_lst **b);
 int					ft_rr_b(t_lst **a, t_lst **b);
 int					ft_rr_r(t_lst **a, t_lst **b);
-char				**option_check(char **ac, int av, int *opt);
-void				ft_print_bits(unsigned int octet, int size);
-void				opts_cmds(t_all *data, int opt);
-
 #endif

@@ -61,11 +61,13 @@ int		ft_quicksort(t_all *data)
 	int		elem_lst_a;
 	int		middle;
 
+	// ft_print_stack(data->lst_a);
 	change_lst(data->lst_a);
 	if (ft_are_sorted_a_val(data->lst_a) == 0)
 		return (0);
 	elem_lst_a = ft_lstlen((data)->lst_a);
 	lst = ft_first_push(&data, elem_lst_a, NULL);
+	data->round = 1;
 	ft_solve_a(data);
 	elem_lst_a = 0;
 	while (data->lst_b)

@@ -1,9 +1,0 @@
-SRCS += $(addprefix srcs/,	data_pars.c\
-							functional_stuff.c\
-							functional_stuff_2.c\
-							start_lst.c)
-
-PSRC += $(addprefix srcs/,	data_pars.c\
-							functional_stuff.c\
-							functional_stuff_2.c\
-							start_lst.c)
