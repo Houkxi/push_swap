@@ -6,10 +6,11 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:16:18 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/03 12:03:14 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/03 12:09:12 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 
 int					ft_create_list(t_lst **lst, t_lst *temp)
 {

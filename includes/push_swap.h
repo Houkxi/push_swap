@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 16:03:02 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/03 11:42:53 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/03 12:17:55 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct		s_all
 	int				round;
 }					t_all;
 
+int					check_lst(t_lst *lst);
 void				opts_cmds(t_all *data, int opt);
 char				**option_check(char **av, int ac, int *opt);
 // t_moves				*ft_cleaning_lst(t_all *data, t_moves *lst);

@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 16:13:24 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/03 12:02:31 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/03 12:20:45 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,23 @@ void	ft_print_stack(t_lst *lst)
 	}
 	if (tmp)
 		ft_printf("%d--%d\n------\n", (lst)->exval, lst->val);
+}
+
+int			check_lst(t_lst *lst)
+{
+	int		ct;
+	t_lst	*tmp;
+
+	ct = 0;
+	tmp = lst;
+	while (tmp->next != lst)
+	{
+		if (tmp->val + 1 != tmp->next->val)
+		{
+			ct++;
+			tmp = tmp->next;
+		}
+		tmp = tmp->next;
+	}
+	return (ct);
 }
