@@ -28,12 +28,6 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	if (ft_checker(ac, av, data) != 1)
-			return (-1);
-//	ft_try_a(data, ac / 2);
-//	ft_sorting_alg(data, ac);
-	// ft_print_stack(data->lst_a);
-	// ft_print_stack(data->lst_b);
-//	free(data->lst_a);
-//	free(data);*/
+		return (-1);
 	return (0);
 }

@@ -58,7 +58,7 @@ clean:
 	@make clean -C ./printf
 
 fclean: clean
-#	@make fclean -C ./printf
+	@make fclean -C ./printf
 	@/bin/rm -f $(NAME) $(NAME2) ./printf/libftprintf.a
 
 re: fclean all

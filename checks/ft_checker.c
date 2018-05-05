@@ -12,14 +12,12 @@
 
 #include "push_swap.h"
 
-int		ft_errors(t_lst *a, int len)
+int			ft_errors(t_lst *a, int len, int i)
 {
 	int		*arr;
-	int		i;
 	int		k;
 	t_lst	*temp;
 
-	i = 0;
 	temp = a;
 	if (!(arr = malloc(sizeof(int) * len)))
 		return (-1);
@@ -42,7 +40,7 @@ int		ft_errors(t_lst *a, int len)
 	return (0);
 }
 
-int		ft_are_int(int ac, char **av)
+int			ft_are_int(int ac, char **av)
 {
 	int i;
 	int k;
@@ -67,59 +65,24 @@ int		ft_are_int(int ac, char **av)
 	return (0);
 }
 
-/*int		ft_take_com(char *com, t_all *data)
-{
-	while (get_next_line(1, &com) == 1)
-	{
-		if (ft_strequ("sa", com) == 1)
-			SA;
-		else if (ft_strequ("sb", com) == 1)
-			SB;
-		else if (ft_strequ("ss", com) == 1)
-			SS;
-		else if (ft_strequ("pa", com) == 1)
-			PA;
-		else if (ft_strequ("pb", com) == 1)
-			PB;
-		else if (ft_strequ("ra", com) == 1)
-			RA;
-		else if (ft_strequ("rb", com) == 1)
-			RB;
-		else if (ft_strequ("rr", com) == 1)
-			RR;
-		else if (ft_strequ("rra", com) == 1)
-			RRA;
-		else if (ft_strequ("rrb", com) == 1)
-			RRB;
-		else if (ft_strequ("rrr", com) == 1)
-			RRR;
-		else
-			return (-1);
-		//ft_printf("\n");
-		//ft_print_stack(data->lst_a);
-	}
-	return (0);
-}*/
 int			ft_take_com(char *com, t_all *data)
 {
 	char	**tab;
 	int		y;
 
-	tab = ft_strsplit("sa sb ss pa pb ra rb rr rra rrb rrr", ' '); 
+	tab = ft_strsplit("sa sb ss pa pb ra rb rr rra rrb rrr", ' ');
 	while (get_next_line(0, &com) > 0)
 	{
 		y = 0;
 		while (tab[y])
 		{
 			if (ft_strequ(tab[y], com) == 1)
-				break;
+				break ;
 			y++;
 		}
-		// ft_printf("%s\n", com);
-			free(com);
-			com = NULL;
+		free(com);
+		com = NULL;
 		data->tab_f[y].f(&data->lst_a, &data->lst_b);
-		// ft_print_stack(data->lst_a);
 	}
 	return (0);
 }
@@ -132,7 +95,7 @@ int			ft_checker(int ac, char **av, t_all *data)
 	i = 0;
 	if (!(data->lst_a))
 		return (0);
-	if (ft_errors(data->lst_a, ft_lstlen(data->lst_a)) == -1)
+	if (ft_errors(data->lst_a, ft_lstlen(data->lst_a), 0) == -1)
 	{
 		ft_printf("Error\n");
 		return (-1);

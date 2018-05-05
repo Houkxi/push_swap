@@ -12,30 +12,32 @@
 
 #include "push_swap.h"
 
+static void	ft_bubble_algo_pt2(t_all *data, int round)
+{
+	while (round--)
+	{
+		RRA;
+		write(1, "rra\n", 4);
+	}
+}
+
 void		ft_bubble_algo(t_all *data)
 {
 	int		len;
 	int		round;
 
-
 	round = 0;
 	len = ft_lstlen(data->lst_a);
-	while(ft_are_sorted_a_val(data->lst_a) == 1)
+	while (ft_are_sorted_a_val(data->lst_a) == 1)
 	{
 		if (AA > AB && AA != len - 1)
 		{
 			SA;
 			write(1, "sa\n", 3);
 			if (ft_are_sorted_a_val(data->lst_a) == 0)
-				break;
+				break ;
 			if (round < len / 2)
-			{
-				while (round--)
-				{
-					RRA;
-					write(1, "rra\n", 4);
-				}
-			}
+				ft_bubble_algo_pt2(data, round);
 			round = 0;
 		}
 		else

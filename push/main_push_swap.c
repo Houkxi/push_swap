@@ -12,6 +12,24 @@
 
 #include "push_swap.h"
 
+static int	ft_main(t_all *data, int ac, char **av)
+{
+	if (ft_are_int(ac, av) != 0)
+	{
+		ft_printf("Error\n");
+		return (-1);
+	}
+	ft_fill(ac, av, &data);
+	if (ft_are_sorted_a_exval(data->lst_a) == 0)
+		return (0);
+	if (ft_errors(data->lst_a, ft_lstlen(data->lst_a), 0) != 0)
+	{
+		ft_printf("Error\n");
+		return (-1);
+	}
+	return (1);
+}
+
 int			main(int ac, char **av)
 {
 	t_all	*data;
@@ -23,19 +41,8 @@ int			main(int ac, char **av)
 		ft_printf("Usage: -[Options] [Lists of numbers]\n");
 		return (0);
 	}
-	if (ft_are_int(ac, av) != 0)
-	{
-		ft_printf("Error\n");
-		return (-1);
-	}
-	ft_fill(ac, av, &data);
-	if (ft_are_sorted_a_exval(data->lst_a) == 0)
+	if (ft_main(data, ac, av) != 1)
 		return (0);
-	if (ft_errors(data->lst_a, ft_lstlen(data->lst_a)) != 0)
-	{
-		ft_printf("Error\n");
-		return (-1);
-	}
 	change_lst(data->lst_a);
 	if (ft_are_sorted_a_but(data->lst_a) == 0)
 	{

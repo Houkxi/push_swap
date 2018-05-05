@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
@@ -12,11 +12,29 @@
 
 #include "push_swap.h"
 
-int		ft_solve_a(t_all *data)
+static void		ft_solve_a_pt2(t_all *data)
 {
-	int	moves;
+	RA;
+	write(1, "ra\n", 3);
+	if (AA > AB)
+	{
+		if (AA > AB && data->lst_b && data->lst_b->next && BA < BB)
+		{
+			SS;
+			write(1, "ss\n", 3);
+		}
+		else
+		{
+			SA;
+			write(1, "sa\n", 3);
+		}
+	}
+	RRA;
+	write(1, "rra\n", 4);
+}
 
-	moves = 0;
+int				ft_solve_a(t_all *data)
+{
 	while (ft_are_sorted_a_val(data->lst_a) == 1)
 	{
 		if (AA > AB)
@@ -34,35 +52,17 @@ int		ft_solve_a(t_all *data)
 		}
 		else
 		{
-			RA;
-			write(1, "ra\n", 3);
-			if (AA > AB )
-			{
-				if (AA > AB && data->lst_b && data->lst_b->next && BA < BB)
-				{
-					SS;
-					write(1, "ss\n", 3);
-				}
-				else
-				{
-					SA;
-					write(1, "sa\n", 3);
-				}
-			}
-			RRA;
-			write(1, "rra\n", 4);
+			ft_solve_a_pt2(data);
 		}
 	}
 	return (0);
 }
 
-int		ft_move_on_a(t_all *data, int middle, int *max)
+int				ft_move_on_a(t_all *data, int middle, int *max, int back)
 {
 	int	moves;
-	int	back;
 
 	moves = 0;
-	back = 0;
 	while (data->lst_b && (moves + back) < *max)
 	{
 		if (BA > middle)
@@ -87,13 +87,11 @@ int		ft_move_on_a(t_all *data, int middle, int *max)
 	return (moves);
 }
 
-int		ft_move_on_b(t_all *data, int middle, int max, int elem)
+int				ft_move_on_b(t_all *data, int middle, int max, int back)
 {
 	int	moves;
-	int	back;
 
 	moves = 0;
-	back = 0;
 	while (moves < max)
 	{
 		if (AA <= middle)
@@ -102,7 +100,7 @@ int		ft_move_on_b(t_all *data, int middle, int max, int elem)
 			write(1, "pb\n", 3);
 			moves++;
 		}
-			else
+		else
 		{
 			RA;
 			write(1, "ra\n", 3);
@@ -115,43 +113,4 @@ int		ft_move_on_b(t_all *data, int middle, int max, int elem)
 		write(1, "rra\n", 4);
 	}
 	return (moves);
-}
-
-int		loop_spot(t_lst *a, int sv)
-{
-	t_lst	*tmp;
-	int	x;
-
-	x = 0;
-	tmp = a;
-	while (tmp->next != a)
-	{
-		if (sv > tmp->exval)
-			x++;
-		tmp = tmp->next;
-	}
-	if (sv > tmp->exval)
-		x++;
-	return (x);
-}
-
-t_lst	*change_lst(t_lst *a)
-{
-	t_lst       *tmp2;
-	int         sv;
-	int         x;
-
-	tmp2 = a;
-	x = 0;
-	while (tmp2->next != a)
-	{
-		sv = tmp2->exval;
-		x = loop_spot(a, sv);
-		tmp2->val = x;
-		tmp2 = tmp2->next;
-	}
-	sv = tmp2->exval;
-	x = loop_spot(a, sv);
-	tmp2->val = x;
-	return (tmp2);
 }

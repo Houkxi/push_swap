@@ -67,10 +67,7 @@ int			ft_find_middle(t_lst *lst, int k, int len)
 		val = arr[k];
 		while (i < len)
 		{
-			if (val < arr[i])
-				more++;
-			else
-				less++;
+			(val < arr[i]) ? more++ : less++;
 			i++;
 		}
 		if (more - less == 0 || (len % 2 == 1 && more - less == 1))
@@ -111,22 +108,4 @@ int			ft_are_sorted_a_exval(t_lst *lst)
 			return (1);
 	}
 	return (0);
-}
-
-int			ft_are_sorted_a_but(t_lst *lst)
-{
-	t_lst	*tmp;
-
-	tmp = lst->prev;
-	lst = lst->next->next;
-	while (lst != tmp)
-	{
-		if (lst->val == (lst->next->val - 1))
-			lst = lst->next;
-		else
-			return (1);
-	}
-	if (tmp->next->val == 1 && tmp->next->next->val == 0)
-		return (0);
-	return (1);
 }

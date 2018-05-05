@@ -14,7 +14,7 @@
 
 static int		power(int power)
 {
-	int i;
+	int			i;
 
 	i = 1;
 	if (power == 0)
@@ -26,7 +26,7 @@ static int		power(int power)
 
 static int		ft_occ(char *s, char c)
 {
-	int x;
+	int			x;
 
 	x = 0;
 	while (s[x])
@@ -40,9 +40,9 @@ static int		ft_occ(char *s, char c)
 	return (-1);
 }
 
-void	ft_print_bits(unsigned int octet, int size)
+void			ft_print_bits(unsigned int octet, int size)
 {
-	int oct;
+	int			oct;
 
 	oct = octet;
 	if (size)
@@ -54,10 +54,10 @@ void	ft_print_bits(unsigned int octet, int size)
 	}
 }
 
-char		*options(char *s, int *oct)
+char			*options(char *s, int *oct)
 {
-	int x;
-	int ret;
+	int			x;
+	int			ret;
 
 	x = 1;
 	ret = 0;
@@ -77,11 +77,11 @@ char		*options(char *s, int *oct)
 	return (s);
 }
 
-char		**option_check(char **av, int ac, int *opt)
+char			**option_check(char **av, int ac, int *opt)
 {
-	int		sv;
-	int		i;
-	int		dty;
+	int			sv;
+	int			i;
+	int			dty;
 
 	i = 1;
 	sv = 0;

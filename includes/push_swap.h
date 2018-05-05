@@ -31,6 +31,7 @@
 # define BA data->lst_b->val
 # define BB data->lst_b->next->val
 # define BZ data->lst_b->prev->val
+
 enum {A = 1, B = 2, C = 4, D = 8, E = 16, F = 32, G = 64, HE = 128, I = 256,
 	JAY = 512, K = 1024, EL = 2048, M = 4096, N = 8192, O = 16384, P = 32768,
 	Q = 65536, R = 131072, S = 262144, T = 524288, U = 1048576, V = 2097152};
@@ -68,17 +69,17 @@ int					ft_are_sorted_a_but(t_lst *lst);
 void				opts_cmds(t_all *data, int opt);
 char				**option_check(char **av, int ac, int *opt);
 int					ft_take_com(char *com, t_all *data);
-int					loop_spot(t_lst *tmp, int sv);
+int					loop_spot(t_lst *a, int sv);
 t_lst				*change_lst(t_lst *a);
 t_grp				*ft_first_push(t_all **data, int elem_lst_a, t_grp *lst);
 int					ft_quicksort(t_all *data);
-int					ft_move_on_b(t_all *data, int middle, int max, int elem);
-int					ft_move_on_a(t_all *data, int middle, int *max);
+int					ft_move_on_b(t_all *data, int middle, int max, int back);
+int					ft_move_on_a(t_all *data, int middle, int *max, int back);
 int					ft_lstlen(t_lst *lst);
 int					ft_find_middle(t_lst *lst, int k, int len);
 int					ft_are_sorted_a_exval(t_lst *lst);
 int					ft_are_sorted_a_val(t_lst *lst);
-int					ft_errors(t_lst *a, int len);
+int					ft_errors(t_lst *a, int len, int i);
 int					ft_are_int(int ac, char **av);
 int					ft_checker(int ac, char **av, t_all *data);
 int					ft_solve_a(t_all *data);

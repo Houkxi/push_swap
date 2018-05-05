@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 static void	ft_lst_del_2(t_grp **lst)
 {
-	t_grp   *tmp;
+	t_grp	*tmp;
 
 	tmp = *lst;
 	if (tmp->group == 0)
@@ -46,7 +46,7 @@ t_grp		*ft_first_push(t_all **data, int elem_lst_a, t_grp *lst)
 			max = (elem_lst_a / 2);
 		else
 			max = elem_lst_a;
-		elements = ft_move_on_b(*data, middle, max, elements);
+		elements = ft_move_on_b(*data, middle, max, 0);
 		if (!(lst_new = (t_grp*)malloc(sizeof(t_grp))))
 			return (NULL);
 		ft_grpadd(&lst, lst_new);
@@ -56,7 +56,7 @@ t_grp		*ft_first_push(t_all **data, int elem_lst_a, t_grp *lst)
 	return (lst);
 }
 
-int		ft_quicksort(t_all *data)
+int			ft_quicksort(t_all *data)
 {
 	t_grp	*lst;
 	int		elem_lst_a;
@@ -71,13 +71,13 @@ int		ft_quicksort(t_all *data)
 	elem_lst_a = 0;
 	while (data->lst_b)
 	{
-			middle = (lst->group > 2) ? \
-				ft_find_middle((data)->lst_b, 0, lst->group) : INT_MIN;
-			elem_lst_a = ft_move_on_a(data, middle, &lst->group);
-			(lst->group == 0 && lst->next) ? ft_lst_del_2(&lst) : 0;
-			(ft_are_sorted_a_val((data)->lst_a) == 0) ? elem_lst_a = 0 : 0;
-			lst = ft_first_push(&data, elem_lst_a, lst);
-			elem_lst_a = ft_solve_a(data);
+		middle = (lst->group > 2) ? \
+		ft_find_middle((data)->lst_b, 0, lst->group) : INT_MIN;
+		elem_lst_a = ft_move_on_a(data, middle, &lst->group, 0);
+		(lst->group == 0 && lst->next) ? ft_lst_del_2(&lst) : 0;
+		(ft_are_sorted_a_val((data)->lst_a) == 0) ? elem_lst_a = 0 : 0;
+		lst = ft_first_push(&data, elem_lst_a, lst);
+		elem_lst_a = ft_solve_a(data);
 	}
 	return (1);
 }
