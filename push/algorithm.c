@@ -47,7 +47,8 @@ t_grp		*ft_first_push(t_all **data, int elem_lst_a, t_grp *lst)
 		else
 			max = elem_lst_a;
 		elements = ft_move_on_b(*data, middle, max, elements);
-		lst_new = (t_grp*)malloc(sizeof(t_grp));
+		if (!(lst_new = (t_grp*)malloc(sizeof(t_grp))))
+			return (NULL);
 		ft_grpadd(&lst, lst_new);
 		lst->group = elements;
 		elem_lst_a = elem_lst_a - elements;
@@ -61,8 +62,6 @@ int		ft_quicksort(t_all *data)
 	int		elem_lst_a;
 	int		middle;
 
-	// ft_print_stack(data->lst_a);
-	change_lst(data->lst_a);
 	if (ft_are_sorted_a_val(data->lst_a) == 0)
 		return (0);
 	elem_lst_a = ft_lstlen((data)->lst_a);

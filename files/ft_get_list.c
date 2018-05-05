@@ -42,7 +42,6 @@ int					ft_fill(int ac, char **av, t_all **data)
 		return (-1);
 	(*data)->lst_a = NULL;
 	(*data)->lst_b = NULL;
-	// (*data)->lst_move = NULL;
 	(*data)->round = 0;
 	(*data)->tab_f = f;
 	if (!(ft_get_list(ac, av, &((*data)->lst_a))))
@@ -68,7 +67,7 @@ static int			ft_list(t_lst **lst, int nb)
 
 static void			ft_deltab(char **tab)
 {
-	int y;
+	int				y;
 
 	y = 0;
 	if (tab)

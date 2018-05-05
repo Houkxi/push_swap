@@ -27,22 +27,3 @@ void	ft_print_stack(t_lst *lst)
 	if (tmp)
 		ft_printf("%d--%d\n------\n", (lst)->exval, lst->val);
 }
-
-int			check_lst(t_lst *lst)
-{
-	int		ct;
-	t_lst	*tmp;
-
-	ct = 0;
-	tmp = lst;
-	while (tmp->next != lst)
-	{
-		if (tmp->val + 1 != tmp->next->val)
-		{
-			ct++;
-			tmp = tmp->next;
-		}
-		tmp = tmp->next;
-	}
-	return (ct);
-}

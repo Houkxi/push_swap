@@ -6,7 +6,7 @@
 #    By: cfavero <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 15:32:33 by cfavero           #+#    #+#              #
-#    Updated: 2018/04/30 17:33:13 by cfavero          ###   ########.fr        #
+#    Updated: 2018/05/03 15:42:43 by cfavero          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ C-SOURCES = files/ft_get_list.c\
 			moves/ft_swap.c\
 			files/options.c\
 			files/options_file.c\
+			push/small_algorithm.c
 			# files/lst_moves.c
 
 P-SOURCES = files/ft_get_list.c\
@@ -42,7 +43,8 @@ P-SOURCES = files/ft_get_list.c\
 			push/algorithm.c\
 			files/options.c\
 			files/options_file.c\
-			# files/lst_moves.c
+			push/small_algorithm.c
+			# filvoides/lst_moves.c
 
 all: $(NAME)
 

@@ -61,7 +61,7 @@ char		*options(char *s, int *oct)
 
 	x = 1;
 	ret = 0;
-	if (s[0] != '-' || (s[0] == '-' && ft_isdigit(s[x + 1])))
+	if (s[0] != '-' || (s[0] == '-' && ft_isdigit(s[x])))
 		return (s);
 	s[0] = ' ';
 	while (s[x])

@@ -36,19 +36,18 @@ int			main(int ac, char **av)
 		ft_printf("Error\n");
 		return (-1);
 	}
-//	if (ft_checker(ac, av, data) != 1)
-//		return (-1);
-//	ft_try_a(data, ac / 2);
-	// ft_print_stack(data->lst_a);
-	ft_quicksort(data);
+	change_lst(data->lst_a);
+	if (ft_are_sorted_a_but(data->lst_a) == 0)
+	{
+		SA;
+		write(1, "sa\n", 3);
+		return (0);
+	}
+	if (ft_lstlen(data->lst_a) < 5)
+		ft_bubble_algo(data);
+	else
+		ft_quicksort(data);
 	if (opt & V || opt & P || opt & B || opt & C)
 		opts_cmds(data, opt);
-	//ft_print_moves(data->lst_move);
-	//data->lst_move = ft_cleaning_lst(data, data->lst_move);
-	// ft_print_moves(data->lst_move);
-	//ft_free_moves(data->lst_move);
-//	ft_print_stack(data->lst_a);
-	//ft_printf("-----------\n");s
-//	ft_print_stack(data->lst_b);
 	return (0);
 }

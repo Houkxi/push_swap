@@ -34,6 +34,7 @@
 enum {A = 1, B = 2, C = 4, D = 8, E = 16, F = 32, G = 64, HE = 128, I = 256,
 	JAY = 512, K = 1024, EL = 2048, M = 4096, N = 8192, O = 16384, P = 32768,
 	Q = 65536, R = 131072, S = 262144, T = 524288, U = 1048576, V = 2097152};
+
 typedef struct		s_lst
 {
 	int				exval;
@@ -48,12 +49,6 @@ typedef struct		s_grp
 	struct s_grp	*next;
 }					t_grp;
 
-/*typedef struct		s_moves
-{
-	char			*move;
-	struct s_moves	*next;
-}					t_moves;*/
-
 typedef struct		s_tab
 {
 	char			*str;
@@ -64,19 +59,15 @@ typedef struct		s_all
 {
 	t_lst			*lst_a;
 	t_lst			*lst_b;
-	// t_moves			*lst_move;
 	t_tab			*tab_f;
 	int				round;
 }					t_all;
 
-int					check_lst(t_lst *lst);
+void				ft_bubble_algo(t_all *data);
+int					ft_are_sorted_a_but(t_lst *lst);
 void				opts_cmds(t_all *data, int opt);
 char				**option_check(char **av, int ac, int *opt);
-// t_moves				*ft_cleaning_lst(t_all *data, t_moves *lst);
-// t_moves				*ft_free_moves(t_moves *lst, int size);
 int					ft_take_com(char *com, t_all *data);
-// void				ft_print_moves(t_moves *lst);
-// void				ft_lstadd_end(t_moves **alst, t_moves *new, char *s);
 int					loop_spot(t_lst *tmp, int sv);
 t_lst				*change_lst(t_lst *a);
 t_grp				*ft_first_push(t_all **data, int elem_lst_a, t_grp *lst);
