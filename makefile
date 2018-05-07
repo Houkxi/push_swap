@@ -28,7 +28,6 @@ C-SOURCES = files/ft_get_list.c\
 			files/options.c\
 			files/options_file.c\
 			push/small_algorithm.c
-			# files/lst_moves.c
 
 P-SOURCES = files/ft_get_list.c\
 			files/ft_print_stack.c \
@@ -44,14 +43,13 @@ P-SOURCES = files/ft_get_list.c\
 			files/options.c\
 			files/options_file.c\
 			push/small_algorithm.c
-			# filvoides/lst_moves.c
 
 all: $(NAME)
 
 $(NAME):
 	@make -C ./printf
 	@gcc -I $(FILEH) -o $(NAME2) $(C-SOURCES) ./printf/libftprintf.a
-	@gcc -g3 -I $(FILEH) -o $(NAME) $(P-SOURCES) ./printf/libftprintf.a
+	@gcc -g3 -I $(FILEH) -o $(NAME) $(P-SOURCES) ./printf/libftprintf.a 
 	@make clean
 
 clean:

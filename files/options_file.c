@@ -6,7 +6,7 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 17:55:39 by mmanley           #+#    #+#             */
-/*   Updated: 2018/05/03 11:44:50 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/07 20:14:03 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static void	color_choices(char *s1)
 static void	nbr_of_cmds(t_all *data, int opt)
 {
 	if (opt & U)
-		ft_printf("Nomber of commands : ?? for list size : %d\n",
+		ft_printf("Nomber of commands : %d for list size : %d\n", data->moves,
 		ft_lstlen(data->lst_a));
 	else
-		ft_printf("Nomber of commands : ??\n");
+		ft_printf("Nomber of commands : %d\n", data->moves);
 }
 
 void		opts_cmds(t_all *data, int opt)
@@ -52,5 +52,5 @@ void		opts_cmds(t_all *data, int opt)
 	if (opt & V)
 		nbr_of_cmds(data, opt);
 	else if (opt & P || opt & B)
-		ft_print_stack(data->lst_a);
+		ft_print_stack(data->lst_a, 'A');
 }

@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:26:08 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/03 12:04:09 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/07 17:32:21 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 static void		ft_solve_a_pt2(t_all *data)
 {
 	RA;
-	write(1, "ra\n", 3);
+	data->moves += ft_printf("%s", "ra\n") / 3;
 	if (AA > AB)
 	{
 		if (AA > AB && data->lst_b && data->lst_b->next && BA < BB)
 		{
 			SS;
-			write(1, "ss\n", 3);
+			data->moves += ft_printf("%s", "ss\n") / 3;
 		}
 		else
 		{
 			SA;
-			write(1, "sa\n", 3);
+			data->moves += ft_printf("%s", "sa\n") / 3;
 		}
 	}
 	RRA;
-	write(1, "rra\n", 4);
+	data->moves += ft_printf("%s", "rra\n") / 4;
 }
 
 int				ft_solve_a(t_all *data)
@@ -42,12 +42,12 @@ int				ft_solve_a(t_all *data)
 			if (AA > AB && data->lst_b && data->lst_b->next && BA < BB)
 			{
 				SS;
-				write(1, "ss\n", 3);
+				data->moves += ft_printf("%s", "ss\n") / 3;
 			}
 			else
 			{
 				SA;
-				write(1, "sa\n", 3);
+				data->moves += ft_printf("%s", "sa\n") / 3;
 			}
 		}
 		else
@@ -68,13 +68,13 @@ int				ft_move_on_a(t_all *data, int middle, int *max, int back)
 		if (BA > middle)
 		{
 			PA;
-			write(1, "pa\n", 3);
+			data->moves += ft_printf("%s", "pa\n") / 3;
 			moves++;
 		}
 		else
 		{
 			RB;
-			write(1, "rb\n", 3);
+			data->moves += ft_printf("%s", "rb\n") / 3;
 			back++;
 		}
 	}
@@ -82,7 +82,7 @@ int				ft_move_on_a(t_all *data, int middle, int *max, int back)
 	while (back--)
 	{
 		RRB;
-		write(1, "rrb\n", 4);
+		data->moves += ft_printf("%s", "rrb\n") / 4;
 	}
 	return (moves);
 }
@@ -97,20 +97,20 @@ int				ft_move_on_b(t_all *data, int middle, int max, int back)
 		if (AA <= middle)
 		{
 			PB;
-			write(1, "pb\n", 3);
+			data->moves += ft_printf("%s", "pb\n") / 3;
 			moves++;
 		}
 		else
 		{
 			RA;
-			write(1, "ra\n", 3);
+			data->moves += ft_printf("%s", "ra\n") / 3;
 			back++;
 		}
 	}
 	while (back-- && data->round == 1)
 	{
 		RRA;
-		write(1, "rra\n", 4);
+		data->moves += ft_printf("%s", "rra\n") / 4;
 	}
 	return (moves);
 }

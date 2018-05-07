@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 16:03:02 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/07 13:45:24 by cfavero          ###   ########.fr       */
+/*   Updated: 2018/05/07 20:13:50 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,15 @@ typedef struct		s_all
 	t_lst			*lst_b;
 	t_tab			*tab_f;
 	int				round;
+	int				moves;
 }					t_all;
 
+void				ft_print_2stack(t_lst *lst_a, t_lst *lst_b);
 void				ft_bubble_algo(t_all *data);
 int					ft_are_sorted_a_but(t_lst *lst);
 void				opts_cmds(t_all *data, int opt);
 char				**option_check(char **av, int ac, int *opt);
-int					ft_take_com(char *com, t_all *data);
+int					ft_take_com(char *com, t_all *data, int opt);
 int					loop_spot(t_lst *a, int sv);
 t_lst				*change_lst(t_lst *a);
 t_grp				*ft_first_push(t_all **data, int elem_lst_a, t_grp *lst);
@@ -81,11 +83,11 @@ int					ft_are_sorted_a_exval(t_lst *lst);
 int					ft_are_sorted_a_val(t_lst *lst);
 int					ft_errors(t_lst *a, int len, int i);
 int					ft_are_int(int ac, char **av);
-int					ft_checker(int ac, char **av, t_all *data);
+int					ft_checker(int ac, char **av, t_all *data, int opt);
 int					ft_solve_a(t_all *data);
 int					ft_sort(t_all *data);
 int					ft_fill(int ac, char **av, t_all **data);
-void				ft_print_stack(t_lst *lst);
+void				ft_print_stack(t_lst *lst, char c);
 int					ft_create_list(t_lst **lst, t_lst *temp);
 int					ft_get_list(int ac, char **av, t_lst **lst);
 int					ft_s_a(t_lst **a, t_lst **b);

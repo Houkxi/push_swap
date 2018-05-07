@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 15:09:46 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/07 15:23:46 by cfavero          ###   ########.fr       */
+/*   Updated: 2018/05/07 20:03:38 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ int			*ft_get_arr(t_lst *a, int len)
 	temp = a;
 	if (!(arr = malloc(sizeof(int) * len + 1)))
 		return (NULL);
-	arr[i] = a->val;
-	a = a->next;
 	while (len--)
 	{
-		i++;
 		arr[i] = a->val;
 		a = a->next;
+		i++;
 	}
 	return (arr);
 }
@@ -39,6 +37,10 @@ int			ft_lstlen(t_lst *lst)
 	t_lst	*tmp;
 
 	i = 1;
+	if (!lst)
+		return (0);
+	if (!lst->next)
+		return (1);
 	tmp = lst;
 	while (lst->next != tmp)
 	{

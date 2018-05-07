@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_checker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 18:39:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/07 15:08:42 by cfavero          ###   ########.fr       */
+/*   Updated: 2018/05/07 20:31:44 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			ft_are_int(int ac, char **av)
 	return (0);
 }
 
-int			ft_take_com(char *com, t_all *data)
+int			ft_take_com(char *com, t_all *data, int opt)
 {
 	char	**tab;
 	int		y;
@@ -80,14 +80,22 @@ int			ft_take_com(char *com, t_all *data)
 				break ;
 			y++;
 		}
+		if (y > 10)
+			return(-1);
 		free(com);
 		com = NULL;
 		data->tab_f[y].f(&data->lst_a, &data->lst_b);
+		if (opt & C)
+		{
+			sleep(1);
+			ft_printf("0\033[H\033[2J");
+			ft_print_2stack(data->lst_a, data->lst_b);
+		}
 	}
 	return (0);
 }
 
-int			ft_checker(int ac, char **av, t_all *data)
+int			ft_checker(int ac, char **av, t_all *data, int opt)
 {
 	int		i;
 	char	*com;
@@ -100,14 +108,22 @@ int			ft_checker(int ac, char **av, t_all *data)
 		ft_printf("Error\n");
 		return (-1);
 	}
-	if (ft_take_com(com, data) == -1)
+	write(1, "\x1B[0m", 5);
+	if (ft_take_com(com, data, opt) == -1)
 	{
 		ft_printf("Error\n");
 		return (-1);
 	}
-	if (ft_are_sorted_a_exval(data->lst_a) == 0 && (data->lst_b == NULL))
+	if (data->lst_a && ft_are_sorted_a_exval(data->lst_a) == 0
+	 	&& (data->lst_b == NULL))
+	{
+		write(1, "\x1B[32m", 5);
 		ft_printf("OK\n");
+	}
 	else
+	{
+		write(1, "\x1B[31m", 5);
 		ft_printf("KO\n");
+	}
 	return (1);
 }
