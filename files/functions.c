@@ -6,7 +6,7 @@
 /*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 15:09:46 by cfavero           #+#    #+#             */
-/*   Updated: 2018/04/27 16:51:36 by cfavero          ###   ########.fr       */
+/*   Updated: 2018/05/07 15:23:46 by cfavero          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			*ft_get_arr(t_lst *a, int len)
 
 	i = 0;
 	temp = a;
-	if (!(arr = malloc(sizeof(int) * len)))
+	if (!(arr = malloc(sizeof(int) * len + 1)))
 		return (NULL);
 	arr[i] = a->val;
 	a = a->next;
@@ -52,28 +52,28 @@ int			ft_find_middle(t_lst *lst, int k, int len)
 {
 	int		val;
 	int		more;
-	int		less;
+	int		le;
 	int		i;
 	int		*arr;
 
 	len == 0 ? len = ft_lstlen(lst) : len;
-	arr = ft_get_arr(lst, len);
+	len == 0 ? 0 : (arr = ft_get_arr(lst, len));
 	k = len;
 	while (k--)
 	{
 		i = 0;
 		more = 0;
-		less = 0;
+		le = 0;
 		val = arr[k];
 		while (i < len)
 		{
-			(val < arr[i]) ? more++ : less++;
+			(val < arr[i]) ? more++ : le++;
 			i++;
 		}
-		if (more - less == 0 || (len % 2 == 1 && more - less == 1))
+		(more - le == 0 || (len % 2 == 1 && more - le == 1)) ? free(arr) : 0;
+		if (more - le == 0 || (len % 2 == 1 && more - le == 1))
 			return (val);
 	}
-	free(arr);
 	return (val);
 }
 
@@ -96,10 +96,10 @@ int			ft_are_sorted_a_exval(t_lst *lst)
 {
 	t_lst	*tmp;
 
-	if (lst->prev)
-		tmp = lst->prev;
-	else
+	if (!lst->prev)
 		return (0);
+	else
+		tmp = lst->prev;
 	while (lst != tmp)
 	{
 		if (lst->exval < (lst->next->exval))

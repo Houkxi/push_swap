@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 14:09:25 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/03 12:18:24 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/07 15:26:51 by cfavero          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int			ft_quicksort(t_all *data)
 		lst = ft_first_push(&data, elem_lst_a, lst);
 		elem_lst_a = ft_solve_a(data);
 	}
+	free(lst);
 	return (1);
 }

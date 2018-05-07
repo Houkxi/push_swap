@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 16:13:24 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/03 12:20:45 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/07 13:49:22 by cfavero          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ t_lst		*change_lst(t_lst *a)
 	int		sv;
 	int		x;
 
+	if (!a)
+		return (NULL);
 	tmp2 = a;
 	x = 0;
 	while (tmp2->next != a)
