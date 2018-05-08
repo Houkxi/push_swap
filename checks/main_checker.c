@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 11:45:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/07 20:27:37 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/08 14:17:03 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,21 @@ static int	ft_check_av(int ac, char **av)
 	return (1);
 }
 
+static void	ft_print_check(void)
+{
+	char	*com;
+
+	com = NULL;
+	get_next_line(0, &com);
+	if (ft_strequ(com, "") == 1)
+	{
+		write(1, "\x1B[32m", 5);
+		ft_printf("OK\n");
+	}
+	else
+		ft_printf("Error\n");
+}
+
 int			main(int ac, char **av)
 {
 	t_all	*data;
@@ -47,9 +62,11 @@ int			main(int ac, char **av)
 		return (-1);
 	}
 	ft_fill(ac, av, &data);
+	if (!(data->lst_a))
+		return (0);
 	if (ft_are_sorted_a_exval(data->lst_a) == 0)
 	{
-		ft_printf("OK\n");
+		ft_print_check();
 		return (0);
 	}
 	if (ft_checker(ac, av, data, opt) != 1)

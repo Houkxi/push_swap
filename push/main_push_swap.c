@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 11:45:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/07 20:36:25 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/08 12:07:19 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static t_all	*ft_main(t_all *data, int ac, char **av)
 	if (ft_are_sorted_a_but(data->lst_a) == 0)
 	{
 		SA;
-		write(1, "\x1B[0m", 5);
 		write(1, "sa\n", 3);
 		return (NULL);
 	}
@@ -79,7 +78,6 @@ int				main(int ac, char **av)
 	int		opt;
 
 	opt = 0;
-	write(1, "\x1B[33m", 5);
 	if (ac == 1 || (ft_check_av(ac, av) == 0))
 		return (0);
 	if (!(av = option_check(av, ac, &opt)))
@@ -88,7 +86,6 @@ int				main(int ac, char **av)
 		return (0);
 	if (opt & B)
 		opts_cmds(data, opt);
-	write(1, "\x1B[0m", 5);
 	(ft_lstlen(data->lst_a) < 5) ? ft_bubble_algo(data) : ft_quicksort(data);
 	if (opt & V || opt & P || opt & B || opt & C)
 		opts_cmds(data, opt);

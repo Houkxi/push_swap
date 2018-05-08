@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 18:39:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/07 20:31:44 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/08 13:30:10 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,8 @@ int			ft_take_com(char *com, t_all *data, int opt)
 			y++;
 		}
 		if (y > 10)
-			return(-1);
-		free(com);
-		com = NULL;
+			return (-1);
+		ft_strdel(&com);
 		data->tab_f[y].f(&data->lst_a, &data->lst_b);
 		if (opt & C)
 		{
@@ -101,25 +100,21 @@ int			ft_checker(int ac, char **av, t_all *data, int opt)
 	char	*com;
 
 	i = 0;
-	if (!(data->lst_a))
-		return (0);
 	if (ft_errors(data->lst_a, ft_lstlen(data->lst_a), 0) == -1)
 	{
 		ft_printf("Error\n");
 		return (-1);
 	}
-	write(1, "\x1B[0m", 5);
 	if (ft_take_com(com, data, opt) == -1)
 	{
+		write(1, "\x1B[33m", 5);
 		ft_printf("Error\n");
 		return (-1);
 	}
+	write(1, "\x1B[32m", 5);
 	if (data->lst_a && ft_are_sorted_a_exval(data->lst_a) == 0
-	 	&& (data->lst_b == NULL))
-	{
-		write(1, "\x1B[32m", 5);
+		&& (data->lst_b == NULL))
 		ft_printf("OK\n");
-	}
 	else
 	{
 		write(1, "\x1B[31m", 5);
