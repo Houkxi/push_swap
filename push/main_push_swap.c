@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 11:45:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/08 12:07:19 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/09 16:57:30 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_all	*ft_main(t_all *data, int ac, char **av)
 		ft_printf("Error\n");
 		return (NULL);
 	}
-	if (!ft_fill(ac, av, &data))
+	if (ft_fill(ac, av, &data) == -1)
 		return (NULL);
 	if (ft_are_sorted_a_exval(data->lst_a) == 0)
 		return (NULL);
@@ -33,6 +33,8 @@ static t_all	*ft_main(t_all *data, int ac, char **av)
 	{
 		SA;
 		write(1, "sa\n", 3);
+		ft_lstclean(&data->lst_a);
+		free(data);
 		return (NULL);
 	}
 	return (data);
@@ -40,36 +42,27 @@ static t_all	*ft_main(t_all *data, int ac, char **av)
 
 static int		ft_check_av(int ac, char **av)
 {
-	int i;
-	int k;
+	int		i;
+	int		k;
+	size_t	j;
 
 	i = 0;
 	k = 1;
 	while (i < ac - 1)
 	{
 		i++;
-		if (av[i][0] == '\0')
-			k++;
+		if (av[i][0] == '\0' || av[i][0] == ' ')
+		{
+			j = 0;
+			while (av[i][j] == ' ')
+				j++;
+			if (av[i][0] == '\0' || j == ft_strlen(av[i]))
+				k++;
+		}
 		if (k == ac)
 			return (0);
 	}
 	return (1);
-}
-
-static void		ft_lstclean(t_lst **alst)
-{
-	t_lst *temp;
-
-	if (alst == NULL)
-		return ;
-	temp = *alst;
-	while (temp->next != *alst)
-	{
-		free(temp);
-		temp = temp->next;
-	}
-	free(temp);
-	*alst = NULL;
 }
 
 int				main(int ac, char **av)

@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   small_algorithm.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 15:09:46 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/03 16:51:36 by cfavero          ###   ########.fr       */
+/*   Updated: 2018/05/09 16:26:16 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void		ft_random_3(t_all *data)
+{
+	long	i;
+
+	i = 1000000000 / 2;
+	while (i)
+		i--;
+	ft_printf("0\033[H\033[2J");
+	ft_print_2stack(data->lst_a, data->lst_b);
+}
+
+int			ft_random_4(int *arr, int ch)
+{
+	free(arr);
+	return (ch);
+}
 
 static void	ft_bubble_algo_pt2(t_all *data, int round)
 {

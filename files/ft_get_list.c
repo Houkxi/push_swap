@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:16:18 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/07 20:36:26 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/09 19:04:28 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int					ft_fill(int ac, char **av, t_all **data)
 	(*data)->round = 0;
 	(*data)->tab_f = f;
 	(*data)->moves = 0;
-	if (!(ft_get_list(ac, av, &((*data)->lst_a))))
+	if ((ft_get_list(ac, av, &((*data)->lst_a))) == -1)
 		return (-1);
 	return (1);
 }
@@ -66,7 +66,7 @@ static int			ft_list(t_lst **lst, int nb)
 	return (1);
 }
 
-static void			ft_deltab(char **tab)
+void				ft_deltab(char **tab)
 {
 	int				y;
 

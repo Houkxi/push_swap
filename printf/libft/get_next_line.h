@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 15:50:21 by cfavero           #+#    #+#             */
-/*   Updated: 2018/04/30 14:29:56 by cfavero          ###   ########.fr       */
+/*   Updated: 2018/05/09 14:17:35 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits.h>
 # include "libft.h"
 # define BUFF_SIZE 4
+# define ENDL		'\n'
 
 int		get_next_line(const int fd, char **line);
 int		get_next_line_mathi(const int fd, char **line);

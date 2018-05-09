@@ -16,6 +16,8 @@ NAME = push_swap
 
 FILEH = ./includes
 
+CFLAGS = -Wall -Wextra -Werror
+
 C-SOURCES = files/ft_get_list.c\
 			files/ft_print_stack.c \
 			checks/ft_checker.c \
@@ -48,8 +50,8 @@ all: $(NAME)
 
 $(NAME):
 	@make -C ./printf
-	@gcc -I $(FILEH) -o $(NAME2) $(C-SOURCES) ./printf/libftprintf.a
-	@gcc -g3 -I $(FILEH) -o $(NAME) $(P-SOURCES) ./printf/libftprintf.a 
+	@gcc -I $(FILEH) -o $(NAME2) $(C-SOURCES) ./printf/libftprintf.a $(CFLAGS)
+	@gcc -g3 -I $(FILEH) -o $(NAME) $(P-SOURCES) ./printf/libftprintf.a $(CFLAGS)
 	@make clean
 
 clean:

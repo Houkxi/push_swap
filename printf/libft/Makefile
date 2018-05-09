@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cfavero <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 15:32:33 by cfavero           #+#    #+#              #
-#    Updated: 2018/04/30 14:32:23 by cfavero          ###   ########.fr        #
+#    Updated: 2018/05/09 14:20:27 by mmanley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC = ft_isalnum.c ft_memccpy.c ft_putchar.c ft_putstr_fd.c ft_strdup.c \
 	   ft_strnew.c ft_tolower.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
 	   ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_sqrt.c ft_is_prime.c \
 	   ft_find_next_prime.c ft_swap.c ft_div_mod.c ft_atoll.c get_next_line.c\
-	   get_next_line_mathi.c ft_strjoin_free.c
+	   get_next_line_mathi.c ft_strjoin_free.c ft_strndup.c
 
 FILEH = libft.h get_next_line.h
 
@@ -42,14 +42,14 @@ OBJ = ft_isalnum.o ft_memccpy.o ft_putchar.o ft_putstr_fd.o ft_strdup.o \
 	  ft_strnew.o ft_tolower.o ft_lstnew.o ft_lstdelone.o ft_lstdel.o \
 	  ft_lstadd.o ft_lstiter.o ft_lstmap.o ft_sqrt.o ft_is_prime.o \
 	  ft_find_next_prime.o ft_swap.o ft_div_mod.o ft_atoll.o get_next_line.o \
-	  get_next_line_mathi.o ft_strjoin_free.o
+	  get_next_line_mathi.o ft_strjoin_free.o ft_strndup.o
 
 ESE = ./a.out
 
 all: $(NAME)
 
 $(NAME):
-	@gcc -I $(FILEH) -c -Wall -Wextra -Werror $(SRC) 
+	@gcc -I $(FILEH) -c -Wall -Wextra -Werror $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib libft.a
 

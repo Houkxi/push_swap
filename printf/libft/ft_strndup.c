@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/02 17:55:04 by mmanley           #+#    #+#             */
-/*   Updated: 2018/05/09 14:52:57 by mmanley          ###   ########.fr       */
+/*   Created: 2018/05/09 14:19:08 by mmanley           #+#    #+#             */
+/*   Updated: 2018/05/09 14:20:56 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
-char	*ft_strjoin_free(char *s1, char *s2, int choice)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	char			*new;
+	char	*s2;
+	size_t	i;
 
-	new = NULL;
-	if (!(new = ft_strjoin(s1, s2)))
+	i = 0;
+	if (!(s2 = ft_strnew(n)))
 		return (NULL);
-	if (choice == 1)
-		ft_strdel(&s1);
-	else if (choice == 2)
-		ft_strdel(&s2);
-	else
+	while (s1[i] && i < n)
 	{
-		ft_strdel(&s1);
-		ft_strdel(&s2);
+		s2[i] = s1[i];
+		i++;
 	}
-	return (new);
+	return (s2);
 }

@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 16:03:02 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/07 20:13:50 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/09 16:26:26 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ typedef struct		s_all
 	int				moves;
 }					t_all;
 
+int					ft_random_4(int *arr, int ch);
+void				ft_random_3(t_all *data);
+void				ft_lstclean(t_lst **alst);
+void				ft_deltab(char **tab);
 void				ft_print_2stack(t_lst *lst_a, t_lst *lst_b);
 void				ft_bubble_algo(t_all *data);
 int					ft_are_sorted_a_but(t_lst *lst);
@@ -83,7 +87,7 @@ int					ft_are_sorted_a_exval(t_lst *lst);
 int					ft_are_sorted_a_val(t_lst *lst);
 int					ft_errors(t_lst *a, int len, int i);
 int					ft_are_int(int ac, char **av);
-int					ft_checker(int ac, char **av, t_all *data, int opt);
+int					ft_checker(t_all *data, int opt);
 int					ft_solve_a(t_all *data);
 int					ft_sort(t_all *data);
 int					ft_fill(int ac, char **av, t_all **data);

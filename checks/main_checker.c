@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 11:45:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/08 14:17:03 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/09 19:04:08 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,34 @@
 
 static int	ft_check_av(int ac, char **av)
 {
-	int i;
-	int k;
+	int		i;
+	int		k;
+	size_t	j;
 
 	i = 0;
 	k = 1;
 	while (i < ac - 1)
 	{
 		i++;
-		if (av[i][0] == '\0')
-			k++;
+		if (av[i][0] == '\0' || av[i][0] == ' ')
+		{
+			j = 0;
+			while (av[i][j] == ' ')
+				j++;
+			if (av[i][0] == '\0' || j == ft_strlen(av[i]))
+				k++;
+		}
 		if (k == ac)
 			return (0);
 	}
 	return (1);
 }
 
-static void	ft_print_check(void)
+int			ft_random_2(t_all *data, int ch)
 {
-	char	*com;
-
-	com = NULL;
-	get_next_line(0, &com);
-	if (ft_strequ(com, "") == 1)
-	{
-		write(1, "\x1B[32m", 5);
-		ft_printf("OK\n");
-	}
-	else
-		ft_printf("Error\n");
+	ft_lstclean(&data->lst_a);
+	free(data);
+	return (ch);
 }
 
 int			main(int ac, char **av)
@@ -61,15 +60,11 @@ int			main(int ac, char **av)
 		ft_printf("Error\n");
 		return (-1);
 	}
-	ft_fill(ac, av, &data);
+	if (ft_fill(ac, av, &data) == -1)
+		return (-1);
 	if (!(data->lst_a))
 		return (0);
-	if (ft_are_sorted_a_exval(data->lst_a) == 0)
-	{
-		ft_print_check();
-		return (0);
-	}
-	if (ft_checker(ac, av, data, opt) != 1)
-		return (-1);
-	return (0);
+	if (ft_checker(data, opt) != 1)
+		return (ft_random_2(data, -1));
+	return (ft_random_2(data, 0));
 }
