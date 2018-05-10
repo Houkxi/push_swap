@@ -6,21 +6,32 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 15:09:46 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/09 20:50:29 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 10:32:13 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		ft_random_3(t_all *data)
+void		ft_random_3(t_all *data, int opt, int ch)
 {
-	long	i;
+	long		i;
+	static int	ct = 0;
 
 	i = 1000000000 / 2;
-	while (i)
-		i--;
-	ft_printf("0\033[H\033[2J");
-	ft_print_2stack(data->lst_a, data->lst_b);
+	if (opt & C && ch == 0)
+	{
+		while (i)
+			i--;
+		ft_printf("0\033[H\033[2J");
+		ft_print_2stack(data->lst_a, data->lst_b);
+	}
+	else if (opt & V && !(opt & C))
+	{
+		if (ch == 0)
+			ct++;
+		else
+			ft_printf("%d\n", ct);
+	}
 }
 
 int			ft_random_2(t_all *data, int ch)

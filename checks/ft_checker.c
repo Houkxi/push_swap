@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 18:39:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/09 19:40:31 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 10:27:11 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,9 @@ int			ft_take_com(char *com, t_all *data, int opt)
 			return (-1);
 		}
 		data->tab_f[y].f(&data->lst_a, &data->lst_b);
-		if (opt & C)
-			ft_random_3(data);
+		ft_random_3(data, opt, 0);
 	}
+	ft_random_3(data, opt, 1);
 	ft_deltab(tab);
 	return (0);
 }
