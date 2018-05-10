@@ -18,6 +18,8 @@ FILEH = ./includes
 
 CFLAGS = -Wall -Wextra -Werror
 
+LIB = libftprintf.a
+
 C-SOURCES = files/ft_get_list.c\
 			files/ft_print_stack.c \
 			checks/ft_checker.c \
@@ -46,15 +48,19 @@ P-SOURCES = files/ft_get_list.c\
 			files/options_file.c\
 			push/small_algorithm.c
 
-all: $(NAME)
+all:  printf $(NAME)
 
-$(NAME):
-	@make -C ./printf
-	@gcc -I $(FILEH) -o $(NAME2) $(C-SOURCES) ./printf/libftprintf.a $(CFLAGS)
-	@gcc -I $(FILEH) -o $(NAME) $(P-SOURCES) ./printf/libftprintf.a $(CFLAGS)
+$(NAME): $(LIB) check push
 	@make clean
 
+$(LIB) :
+	@make -C ./printf
 
+check : $(LIB)
+	@gcc -I $(FILEH) -o $(NAME2) $(C-SOURCES) ./printf/libftprintf.a $(CFLAGS)
+
+push : $(LIB)
+	@gcc -I $(FILEH) -o $(NAME) $(P-SOURCES) ./printf/libftprintf.a $(CFLAGS)
 
 clean:
 	@make clean -C ./printf
