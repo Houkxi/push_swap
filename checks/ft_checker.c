@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 18:39:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/10 17:44:14 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 18:55:35 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,13 @@ int			ft_are_int(int ac, char **av)
 	while (i < ac)
 	{
 		k = 0;
-		if (av[i][k + 1] && av[i][k] == '-' && ft_isdigit(av[i][k + 1]))
+		if (av[i][k + 1] && ((av[i][k] == '-' && ft_isdigit(av[i][k + 1])) ||
+		(av[i][k] == '+' && ft_isdigit(av[i][k + 1]))))
 			k++;
 		while (ft_isdigit(av[i][k]) || av[i][k] == ' ' || (av[i][k] == '-' &&
-				av[i][k - 1] == ' ' && ft_isdigit(av[i][k + 1])))
+				av[i][k - 1] == ' ' && ft_isdigit(av[i][k + 1])) ||
+				(av[i][k] == '+' && av[i][k - 1] == ' ' &&
+				ft_isdigit(av[i][k + 1])))
 			k++;
 		if (av[i][k])
 			return (1);
