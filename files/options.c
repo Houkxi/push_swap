@@ -6,7 +6,7 @@
 /*   By: exam <exam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:32:46 by exam              #+#    #+#             */
-/*   Updated: 2018/05/07 20:25:57 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 10:59:59 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,16 @@ static int		ft_occ(char *s, char c)
 	return (-1);
 }
 
-void			ft_print_bits(unsigned int octet, int size)
+void			ft_color_choices(int opt, int zone)
 {
-	int			oct;
-
-	oct = octet;
-	if (size)
+	if (opt & D)
 	{
-		ft_print_bits(octet >> 1, size - 1);
-		ft_putchar('0' + (oct & 1));
-		if (size % 8 == 0)
-			ft_putchar(' ');
+		if (zone == 1)
+			write(1, "\x1B[31m", 5);
+		else if (zone == 2)
+			write(1, "\x1B[32m", 5);
+		else if (zone == 3)
+			write(1, "\x1B[33m", 5);
 	}
 }
 
@@ -88,6 +87,7 @@ char			**option_check(char **av, int ac, int *opt)
 	{
 		if (av[i][0] == '-' && !(av[i] = options(av[i], &sv)))
 		{
+			ft_color_choices(sv, 3);
 			ft_printf("Error\n");
 			return (NULL);
 		}

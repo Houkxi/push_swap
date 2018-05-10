@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 11:45:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/09 19:56:11 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 10:54:14 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int			main(int ac, char **av)
 	int		opt;
 
 	opt = 0;
-	write(1, "\x1B[33m", 5);
 	if (ac == 1 || (ft_check_av(ac, av) == 0))
 		return (0);
 	if (!(av = option_check(av, ac, &opt)))
 		return (0);
+	ft_color_choices(opt, 3);
 	if (ft_are_int(ac, av) != 0)
 	{
 		ft_printf("Error\n");

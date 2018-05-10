@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 16:03:02 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/10 10:26:04 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 10:53:20 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct		s_all
 	int				moves;
 }					t_all;
 
+void				ft_color_choices(int opt, int zone);
 int					ft_random_4(int *arr, int ch);
 void				ft_random_3(t_all *data, int opt, int ch);
 int					ft_random_2(t_all *data, int ch);

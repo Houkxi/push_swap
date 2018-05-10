@@ -54,6 +54,8 @@ $(NAME):
 	@gcc -I $(FILEH) -o $(NAME) $(P-SOURCES) ./printf/libftprintf.a $(CFLAGS)
 	@make clean
 
+
+
 clean:
 	@make clean -C ./printf
 

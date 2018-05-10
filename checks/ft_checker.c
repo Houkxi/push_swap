@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 18:39:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/10 10:27:11 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 10:52:59 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,13 +127,13 @@ int			ft_checker(t_all *data, int opt)
 		ft_printf("Error\n");
 		return (-1);
 	}
-	write(1, "\x1B[32m", 5);
+	ft_color_choices(opt, 2);
 	if (data->lst_a && ft_are_sorted_a_exval(data->lst_a) == 0
 		&& (data->lst_b == NULL))
 		ft_printf("OK\n");
 	else
 	{
-		write(1, "\x1B[31m", 5);
+		ft_color_choices(opt, 1);
 		ft_printf("KO\n");
 	}
 	return (1);
