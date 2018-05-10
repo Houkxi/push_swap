@@ -6,17 +6,23 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 11:45:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/09 20:14:07 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 16:00:30 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static int		ft_error(void)
+{
+	write(2, "Error\n", 6);
+	return (0);
+}
+
 static t_all	*ft_main(t_all **data, int ac, char **av)
 {
 	if (ft_are_int(ac, av) != 0)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		return (NULL);
 	}
 	if (ft_fill(ac, av, data) == -1)
@@ -25,20 +31,20 @@ static t_all	*ft_main(t_all **data, int ac, char **av)
 		return (NULL);
 	if (ft_errors((*data)->lst_a, ft_lstlen((*data)->lst_a), 0) != 0)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		return (NULL);
 	}
 	change_lst((*data)->lst_a);
 	if (ft_are_sorted_a_but((*data)->lst_a) == 0)
 	{
 		(*data)->tab_f[0].f(&(*data)->lst_a, &(*data)->lst_b);
-		write(1, "sa\n", 3);
+		(*data)->moves += ft_printf("%s", "sa\n") / 3;
 		return (NULL);
 	}
 	return (*data);
 }
 
-static int		ft_check_av(int ac, char **av)
+int				ft_check_av(int ac, char **av)
 {
 	int		i;
 	int		k;
@@ -70,12 +76,17 @@ int				main(int ac, char **av)
 
 	opt = 0;
 	data = NULL;
-	if (ac == 1 || (ft_check_av(ac, av) == 0))
+	if (ac == 1)
 		return (0);
+	if ((ft_check_av(ac, av) == 0))
+		return (ft_error());
 	if (!(av = option_check(av, ac, &opt)))
 		return (0);
 	if ((ft_main((&data), ac, av)) == NULL)
+	{
+		opts_cmds(data, opt);
 		return (ft_random_2(data, 0));
+	}
 	if (opt & B)
 		opts_cmds(data, opt);
 	(ft_lstlen(data->lst_a) < 5) ? ft_bubble_algo(data) : ft_quicksort(data);

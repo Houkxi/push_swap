@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 17:16:18 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/09 20:11:57 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 15:25:41 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,15 @@ int					ft_get_list(int ac, char **av, t_lst **lst_a)
 		tab = ft_strsplit(av[i], ' ');
 		j = 0;
 		while (tab[j])
+		{
+			if (ft_strlen(tab[j]) > 11)
+			{
+				write(2, "Error\n", 6);
+				return (-1);
+			}
 			if (!(ft_list(lst_a, ft_atoi(tab[j++]))))
 				return (-1);
+		}
 		ft_deltab(tab);
 		i++;
 	}

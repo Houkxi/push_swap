@@ -6,13 +6,13 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 11:45:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/10 10:54:14 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 15:59:54 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_check_av(int ac, char **av)
+int			ft_check_av(int ac, char **av)
 {
 	int		i;
 	int		k;
@@ -37,22 +37,27 @@ static int	ft_check_av(int ac, char **av)
 	return (1);
 }
 
+static int	ft_error(void)
+{
+	write(2, "Error\n", 6);
+	return (0);
+}
+
 int			main(int ac, char **av)
 {
 	t_all	*data;
 	int		opt;
 
 	opt = 0;
-	if (ac == 1 || (ft_check_av(ac, av) == 0))
+	if (ac == 1)
 		return (0);
+	if ((ft_check_av(ac, av) == 0))
+		return (ft_error());
 	if (!(av = option_check(av, ac, &opt)))
 		return (0);
 	ft_color_choices(opt, 3);
 	if (ft_are_int(ac, av) != 0)
-	{
-		ft_printf("Error\n");
-		return (-1);
-	}
+		return (ft_error());
 	if (ft_fill(ac, av, &data) == -1)
 		return (-1);
 	if (!(data->lst_a))

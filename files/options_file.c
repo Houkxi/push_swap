@@ -6,13 +6,13 @@
 /*   By: mmanley <mmanley@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/01 17:55:39 by mmanley           #+#    #+#             */
-/*   Updated: 2018/05/08 10:55:08 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 15:14:15 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		ft_prt(t_lst *lst, int *len, char c)
+static void	ft_prt(t_lst *lst, int *len, char c)
 {
 	if (lst && --(*len) <= 0)
 		ft_printf("|%13d|%c", (lst)->exval, c);
@@ -20,7 +20,7 @@ void		ft_prt(t_lst *lst, int *len, char c)
 		ft_printf("|%14|%c", c);
 }
 
-void		ft_need_space(t_lst *lst_a, t_lst *lst_b, int len_a, int len_b)
+static void	ft_need_space(t_lst *lst_a, t_lst *lst_b, int len_a, int len_b)
 {
 	t_lst	*tmp;
 	t_lst	*tmp2;
@@ -84,8 +84,11 @@ static void	nbr_of_cmds(t_all *data, int opt)
 
 void		opts_cmds(t_all *data, int opt)
 {
-	if (opt & V)
-		nbr_of_cmds(data, opt);
-	else if (opt & P || opt & B)
-		ft_print_stack(data->lst_a, 'A');
+	if (data)
+	{
+		if (opt & V)
+			nbr_of_cmds(data, opt);
+		else if (opt & P || opt & B)
+			ft_print_stack(data->lst_a, 'A');
+	}
 }

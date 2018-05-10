@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 15:09:46 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/10 10:51:48 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 15:43:17 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	ft_bubble_algo_pt2(t_all *data, int round)
 	while (round--)
 	{
 		RRA;
-		write(1, "rra\n", 4);
+		data->moves += ft_printf("%s", "rra\n") / 4;
 	}
 }
 
@@ -78,7 +78,7 @@ void		ft_bubble_algo(t_all *data)
 		if (AA > AB && AA != len - 1)
 		{
 			SA;
-			write(1, "sa\n", 3);
+			data->moves += ft_printf("%s", "sa\n") / 3;
 			if (ft_are_sorted_a_val(data->lst_a) == 0)
 				break ;
 			if (round < len / 2)
@@ -89,7 +89,7 @@ void		ft_bubble_algo(t_all *data)
 		{
 			round++;
 			RA;
-			write(1, "ra\n", 3);
+			data->moves += ft_printf("%s", "ra\n") / 3;
 		}
 	}
 }

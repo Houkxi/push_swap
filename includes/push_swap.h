@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 16:03:02 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/10 10:53:20 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 15:41:16 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@
 # define BB data->lst_b->next->val
 # define BZ data->lst_b->prev->val
 
-enum {A = 1, B = 2, C = 4, D = 8, E = 16, F = 32, G = 64, HE = 128, I = 256,
-	JAY = 512, K = 1024, EL = 2048, M = 4096, N = 8192, O = 16384, P = 32768,
-	Q = 65536, R = 131072, S = 262144, T = 524288, U = 1048576, V = 2097152};
+enum {B = 1, C = 2, D = 4, P = 8, U = 16, V = 32};
 
 typedef struct		s_lst
 {
@@ -65,6 +63,7 @@ typedef struct		s_all
 	int				moves;
 }					t_all;
 
+int					ft_check_av(int ac, char **av);
 void				ft_color_choices(int opt, int zone);
 int					ft_random_4(int *arr, int ch);
 void				ft_random_3(t_all *data, int opt, int ch);

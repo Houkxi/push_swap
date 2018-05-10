@@ -6,7 +6,7 @@
 /*   By: exam <exam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:32:46 by exam              #+#    #+#             */
-/*   Updated: 2018/05/10 10:59:59 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/10 15:39:57 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char			*options(char *s, int *oct)
 	s[0] = ' ';
 	while (s[x])
 	{
-		ret = ft_occ("abcdefghijklmnopqrstuvwxyz", s[x]);
+		ret = ft_occ("bcdpuv", s[x]);
 		if (ret == -1)
 			return (NULL);
 		s[x] = ' ';
@@ -88,8 +88,14 @@ char			**option_check(char **av, int ac, int *opt)
 		if (av[i][0] == '-' && !(av[i] = options(av[i], &sv)))
 		{
 			ft_color_choices(sv, 3);
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
+			write(2, "Usage: exe [bcdpv] [list of numbers]\n", 38);
 			return (NULL);
+		}
+		if (ac == 1 || (ft_check_av(ac, av) == 0))
+		{
+			write(2, "Error\n", 6);
+			return (0);
 		}
 		i++;
 	}
