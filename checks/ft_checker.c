@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 18:39:30 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/10 18:55:35 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/11 13:52:02 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int			ft_check_nbr_size(char *s)
 
 int			ft_are_int(int ac, char **av)
 {
-	int i;
-	int k;
+	int		i;
+	int		k;
 
 	i = 1;
 	while (i < ac)

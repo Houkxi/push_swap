@@ -10,64 +10,72 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME2 = checker
+NAME = test
 
-NAME = push_swap
+CHECK = checker
 
-FILEH = ./includes
+PUSH = push_swap
+
+INC = includes/
 
 CFLAGS = -Wall -Wextra -Werror
 
 LIB = libftprintf.a
 
-C-SOURCES = files/ft_get_list.c\
-			files/ft_print_stack.c \
-			checks/ft_checker.c \
-			files/functions.c \
-			checks/main_checker.c\
-			moves/ft_reverse.c\
-			moves/ft_push.c\
-			moves/ft_rotate.c\
-			moves/ft_swap.c\
-			files/options.c\
-			files/options_file.c\
-			push/small_algorithm.c
+OBJ_PATH = objs/
 
-P-SOURCES = files/ft_get_list.c\
-			files/ft_print_stack.c \
-			push/push_swap.c\
-			checks/ft_checker.c \
-			files/functions.c \
-			moves/ft_reverse.c\
-			moves/ft_push.c\
-			moves/ft_rotate.c\
-			moves/ft_swap.c\
-			push/main_push_swap.c\
-			push/algorithm.c\
-			files/options.c\
-			files/options_file.c\
-			push/small_algorithm.c
+RED = \x1b[31m
 
-all:  printf $(NAME)
+GREEN = \x1b[32m
 
-$(NAME): $(LIB) check push
-	@make clean
+WHITE = \x1b[0m
+
+include files/make.dep
+include moves/make.dep
+include push/make.dep
+include checks/make.dep
+
+COBJS = $(CSRC:%.c=%.o)
+
+POBJS = $(PSRC:%.c=%.o)
+
+CHOBJS = $(addprefix $(OBJ_PATH), $(COBJS))
+
+PUOBJS = $(addprefix $(OBJ_PATH), $(POBJS))
+
+all: $(LIB) objs $(NAME)
+
+$(NAME): $(INC) $(CHECK) $(PUSH)
+	@echo "Status${GREEN}		----OVER--${WHITE}"
 
 $(LIB) :
 	@make -C ./printf
 
-check : $(LIB)
-	@gcc -I $(FILEH) -o $(NAME2) $(C-SOURCES) ./printf/libftprintf.a $(CFLAGS)
+$(OBJ_PATH)%.o: %.c
+	@gcc $(FLAGS) -o $@ -c $< -I $(INC)
 
-push : $(LIB)
-	@gcc -I $(FILEH) -o $(NAME) $(P-SOURCES) ./printf/libftprintf.a $(CFLAGS)
+$(CHECK):  $(CHOBJS)
+	@gcc -I $(INC) -o $(CHECK) $(CHOBJS) ./printf/libftprintf.a $(CFLAGS)
+	@echo "checker${GREEN}			DONE${WHITE}"
+
+$(PUSH) : $(PUOBJS)
+	@gcc -I $(INC) -o $(PUSH) $(PUOBJS) ./printf/libftprintf.a $(CFLAGS)
+	@echo "push_swap${GREEN}		DONE${WHITE}"
+
+objs:
+	@mkdir -p objs
+	@mkdir -p objs/files
+	@mkdir -p objs/checks
+	@mkdir -p objs/moves
+	@mkdir -p objs/push
 
 clean:
 	@make clean -C ./printf
+	@rm -rf objs
 
 fclean: clean
 	@make fclean -C ./printf
-	@/bin/rm -f $(NAME) $(NAME2) ./printf/libftprintf.a
+	@/bin/rm -f $(CHECK) $(PUSH) ./printf/libftprintf.a
 
 re: fclean all
 

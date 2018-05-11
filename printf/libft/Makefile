@@ -6,11 +6,19 @@
 #    By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 15:32:33 by cfavero           #+#    #+#              #
-#    Updated: 2018/05/09 14:20:27 by mmanley          ###   ########.fr        #
+#    Updated: 2018/05/11 15:56:05 by mmanley          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
+RED = \x1b[31m
+
+GREEN = \x1b[32m
+
+WHITE = \x1b[0m
+
+FILEH = libft.h get_next_line.h
 
 SRC = ft_isalnum.c ft_memccpy.c ft_putchar.c ft_putstr_fd.c ft_strdup.c \
 	   ft_strmap.c ft_strnstr.c ft_toupper.c ft_isalpha.c ft_memchr.c \
@@ -27,8 +35,6 @@ SRC = ft_isalnum.c ft_memccpy.c ft_putchar.c ft_putstr_fd.c ft_strdup.c \
 	   ft_find_next_prime.c ft_swap.c ft_div_mod.c ft_atoll.c get_next_line.c\
 	   get_next_line_mathi.c ft_strjoin_free.c ft_strndup.c
 
-FILEH = libft.h get_next_line.h
-
 OBJ = ft_isalnum.o ft_memccpy.o ft_putchar.o ft_putstr_fd.o ft_strdup.o \
 	  ft_strmap.o ft_strnstr.o ft_toupper.o ft_isalpha.o ft_memchr.o \
 	  ft_putchar_fd.o ft_strcat.o ft_strequ.o ft_strmapi.o ft_strrchr.o \
@@ -44,14 +50,18 @@ OBJ = ft_isalnum.o ft_memccpy.o ft_putchar.o ft_putstr_fd.o ft_strdup.o \
 	  ft_find_next_prime.o ft_swap.o ft_div_mod.o ft_atoll.o get_next_line.o \
 	  get_next_line_mathi.o ft_strjoin_free.o ft_strndup.o
 
-ESE = ./a.out
+all: $(NAME) info
 
-all: $(NAME)
-
-$(NAME):
+$(NAME): $(OBJ)
 	@gcc -I $(FILEH) -c -Wall -Wextra -Werror $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib libft.a
+
+%.o: %.c
+	@gcc $(FLAGS) -o $@ -c $<
+
+info:
+	@echo "libft.a${GREEN}			DONE${WHITE}"
 
 clean:
 	@/bin/rm -f $(OBJ)

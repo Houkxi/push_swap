@@ -12,23 +12,49 @@
 
 NAME = libftprintf.a
 
-FILEH = libft.h ft_printf.h
+INC = ft_printf.h
 
-SOURCES-PRF = flag_c.c flag_d.c flag_s.c flag_u.c ft_fillstruct.c ft_printf.c \
-	get_list.c  ft_precision_d.c ft_unicode.c flag_o.c ft_size_d.c \
-	ft_itoa_base.c ft_precision_x.c ft_size_u.c flag_x.c ft_uitoa_base.c
+LIB = libft.a
+
+RED = \x1b[31m
+
+GREEN = \x1b[32m
+
+WHITE = \x1b[0m
+
+SOURCES-PRF =	flag_c.c\
+				flag_d.c\
+				flag_o.c\
+				flag_s.c\
+				flag_u.c\
+				flag_x.c\
+				ft_fillstruct.c\
+				ft_printf.c\
+				ft_precision_d.c\
+				ft_unicode.c\
+				ft_size_d.c\
+				ft_itoa_base.c\
+				ft_precision_x.c\
+				ft_size_u.c\
+				ft_uitoa_base.c\
+				get_list.c\
 
 OBJECTS-PRF = $(SOURCES-PRF:.c=.o)
 
-ESE = ./a.out
+all: $(LIB) $(NAME) info
 
-all: $(NAME)
-
-$(NAME):
+$(LIB) :
 	@make -C ./libft
-	@gcc -I $(FILEH) -c -Wall -Wextra -Werror $(SOURCES-PRF)
+
+$(NAME): $(INC) $(OBJECTS-PRF)
 	@libtool -static -o $@ libft/libft.a $(OBJECTS-PRF)
 	@ranlib $(NAME)
+
+%.o: %.c
+	@gcc $(FLAGS) -o $@ -c $< -I $(INC)
+
+info:
+	 @echo "libftprintf.a${GREEN}		DONE${WHITE}"
 
 clean:
 	@make clean -C ./libft
