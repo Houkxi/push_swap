@@ -6,7 +6,7 @@
 /*   By: cfavero <cfavero@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 15:09:46 by cfavero           #+#    #+#             */
-/*   Updated: 2018/05/10 15:43:17 by mmanley          ###   ########.fr       */
+/*   Updated: 2018/05/11 19:14:29 by mmanley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		ft_random_3(t_all *data, int opt, int ch)
 	{
 		while (i)
 			i--;
-		ft_printf("0\033[H\033[2J");
+		ft_printf("\033[H\033[2J");
 		ft_print_2stack(data->lst_a, data->lst_b);
 	}
 	else if (opt & V && !(opt & C))
