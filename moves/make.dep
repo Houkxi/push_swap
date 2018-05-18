@@ -1,9 +1,0 @@
-CSRC += $(addprefix moves/,	ft_reverse.c\
-							ft_push.c\
-							ft_rotate.c\
-							ft_swap.c)
-
-PSRC += $(addprefix moves/,	ft_reverse.c\
-							ft_push.c\
-							ft_rotate.c\
-							ft_swap.c)
