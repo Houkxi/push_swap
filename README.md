@@ -7,8 +7,9 @@
 
 ## Description
 
-A sorting program using a form of Quicksort.
-A checking program to make sure the outputs from the first executable do truely sort a list of numbers
+The project introduces the concept of ```Sorting``` algorithms such as *Quicksort*, *Bubblesort* or again *Mergesort* ...
+
+![push_swap](https://github.com/mmanley42/ressources/blob/master/push_swap_visu.gif)
 
 ```
 To be continued
